@@ -1,0 +1,95 @@
+@import '../../scss/export';
+
+.member {
+  max-width: 350px;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  .pen {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+  // 大頭貼
+  .thumb-nail {
+    width: 200px;
+    height: 200px;
+    background-size: 100%;
+    border-radius: 50%;
+    margin: 10px 0;
+    position: relative;
+    &:hover {
+      opacity: 0.5;
+    }
+    .upload-img {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      bottom: 0;
+      right: 20px;
+    }
+    input.file-upload {
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  .drag-over {
+    opacity: 0.5;
+  }
+
+  // 文字資料
+  .email {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    span {
+      font-size: 1rem;
+      color: rgb(91, 90, 90);
+    }
+    input {
+      width: 300px;
+      height: 35px;
+      padding: 0px 10px;
+      border: 2px solid rgba(64, 141, 95, 0.8);
+      &:focus {
+        outline: none;
+        border: 1.5px solid rgb(147, 146, 146);
+      }
+      &:read-only {
+        border: 1px solid black;
+      }
+    }
+  }
+  button {
+    height: 35px;
+    border: 1px solid black;
+    background-color: black;
+    font-size: 1.2rem;
+    color: #ffff;
+    margin-top: 5px;
+    width: 300px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}

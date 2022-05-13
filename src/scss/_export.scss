@@ -1,0 +1,19 @@
+// font-size
+$size1: 35px;
+$size2: 24px;
+$size3: 20px;
+$size4: 18px;
+$size5: 16px;
+$size6: 14px;
+
+// width
+$width1: 1340px;
+@mixin pad {
+    @media (max-width: 800px) {
+        @content;
+    }
+}
+
+// color
+
+$color1: rgb(87, 87, 87);

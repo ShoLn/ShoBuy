@@ -1,0 +1,117 @@
+@import '../../scss/export';
+
+.Navbar {
+  border-bottom: 1px solid black;
+  position: sticky;
+  top: 0;
+  z-index: 99999;
+  background-color: rgba($color: #ffffff, $alpha: 1);
+  .nav-container {
+    display: flex;
+    height: 60px;
+    align-items: center;
+    max-width: $width1;
+    margin: 0 auto;
+    div.left {
+      width: 200px;
+      margin-left: 10px;
+      .logo {
+        letter-spacing: 0px;
+        padding: 5px 0;
+        display: flex;
+        justify-content: center;
+        width: 140px;
+        background-color: black;
+        color: #ffff;
+        cursor: pointer;
+        font-size: 2.5rem;
+        font-weight: 900;
+        font-family: 'Times New Roman', Times, serif;
+        font-style: italic;
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
+    .nav {
+      display: flex;
+      justify-content: center;
+      flex: auto;
+      height: 100%;
+    }
+    div.right {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 200px;
+      margin-right: 10px;
+      height: 100%;
+      .search {
+        position: relative;
+        display: flex;
+        align-items: center;
+        input {
+          position: absolute;
+          right: 50px;
+          height: 30px;
+          border: none;
+          border-bottom: 1px solid black;
+          width: 120px;
+          font-size: 1rem;
+          &:focus {
+            outline: none;
+          }
+        }
+        .magnifier {
+          width: 20px;
+          height: 20px;
+          margin-right: 20px;
+          margin-left: 10px;
+          cursor: pointer;
+          &:hover {
+            opacity: 0.5;
+          }
+          &:focus ~ .mag {
+            border: none;
+          }
+        }
+      }
+      .a {
+        display: flex;
+        align-items: center;
+        height: 60px;
+      }
+      .member {
+        width: 20px;
+        height: 20px;
+        margin-right: 20px;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+
+      .cart {
+        width: 24px;
+        height: 24px;
+        margin-right: 20px;
+        margin-top: 5px;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+
+      .logout {
+        border: 1px solid black;
+        padding: 2px;
+        border-radius: 5px;
+        &:hover {
+          background-color: black;
+          color: #ffff;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
