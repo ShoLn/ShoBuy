@@ -23,16 +23,25 @@ export const useSignup = () => {
 
       // create user document in firestore member collection
       await dbSet('members', res.user.uid, {
-        uid:res.user.uid,
+        uid: res.user.uid,
         displayName,
         email,
         address,
-        phone
+        phone,
+        thumbNail:
+          'https://firebasestorage.googleapis.com/v0/b/shobuy-bc47c.appspot.com/o/initial_thumb_nail%2Fthumb_nail.png?alt=media&token=f833b04b-bfac-4e84-bb95-d3815f50122c'
       })
       // update Authcontext state
       dispatch({
         type: 'LOGIN',
-        payload: { uid:res.user.uid, displayName, address, phone }
+        payload: {
+          uid: res.user.uid,
+          displayName,
+          address,
+          phone,
+          thumbNail:
+            'https://firebasestorage.googleapis.com/v0/b/shobuy-bc47c.appspot.com/o/initial_thumb_nail%2Fthumb_nail.png?alt=media&token=f833b04b-bfac-4e84-bb95-d3815f50122c'
+        }
       })
 
       //update state

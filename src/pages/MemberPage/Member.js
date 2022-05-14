@@ -3,10 +3,11 @@ import { useState } from 'react'
 import './Member.scss'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useFirestore } from '../../hooks/useFirestore'
+import { storage } from '../../firebase/config'
 
 // img
 import pen from '../../icon/pen.png'
-import upload_img from '../../icon/upload_img.png'
+import cloud_icon from '../../icon/cloud_icon.png'
 
 export default function Member() {
   const { user, dispatch } = useAuthContext()
@@ -15,32 +16,83 @@ export default function Member() {
   const [address, setAddress] = useState(user.address)
   const [phone, setPhone] = useState(user.phone)
   const [readonly, setReadonly] = useState(true)
-  const [file, setFile] = useState(null)
+  const [thumbFile, setThumbFile] = useState(null)
   const [dragOver, setDragOver] = useState('')
-  const [tempURL, setTempURL] = useState('../../icon/thumb_nail.png')
+  const [prevUrl, setPrevUrl] = useState(user.thumbNail)
+  const [isPending, setIsPending] = useState(false)
+  const [finishedUpload, setFinishedUpload] = useState(false)
+  const { dbUpdate } = useFirestore()
 
-  const { dbUpdate, isPending } = useFirestore()
-
-  // 變更文字資料
-  const handleSubmit = (e) => {
+  // 提交變更
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    // update firestore user data
-    dbUpdate('members', user.uid, { displayName, address, phone })
+    setIsPending(true)
+    setFinishedUpload(false)
 
-    // update authContext
-    dispatch({
-      type: 'LOGIN',
-      payload: { ...user, email, displayName, address, phone }
-    })
+    // 若有上傳新的大頭貼
+    if (thumbFile) {
+      const uploadPath = `initial_thumb_nail/${user.uid}/thumb_nail`
+      const actualImg = await storage.ref(uploadPath).put(thumbFile)
+      const actualImgUrl = await actualImg.ref.getDownloadURL()
+      // update firestore user data
+      dbUpdate('members', user.uid, {
+        displayName,
+        address,
+        phone,
+        thumbNail: actualImgUrl
+      })
+
+      // update authContext
+      dispatch({
+        type: 'LOGIN',
+        payload: {
+          ...user,
+          email,
+          displayName,
+          address,
+          phone,
+          thumbNail: actualImgUrl
+        }
+      })
+      // 若無上傳新的大頭貼
+    } else {
+      // update firestore user data
+      dbUpdate('members', user.uid, {
+        displayName,
+        address,
+        phone
+      })
+
+      // update authContext
+      dispatch({
+        type: 'LOGIN',
+        payload: {
+          ...user,
+          email,
+          displayName,
+          address,
+          phone
+        }
+      })
+    }
 
     setReadonly(true)
+    setIsPending(false)
+    setFinishedUpload(true)
   }
 
-  // 處理大頭貼相關事件
+  // 大頭貼變更觸發事件
   const handleFileChange = (e) => {
-    let tempURL = URL.createObjectURL(e.target.files[0])
-    setTempURL(tempURL)
+    let file = e.target.files[0]
+    if (file.type.split('/')[0] === 'image') {
+      console.log(e.target.files)
+      let tempUrl = URL.createObjectURL(e.target.files[0])
+      setPrevUrl(tempUrl)
+      setThumbFile(file)
+    } else {
+      alert('wrong img type')
+    }
   }
 
   return (
@@ -54,10 +106,13 @@ export default function Member() {
           setReadonly(!readonly)
         }}
       />
-      <div className={`thumb-nail ${dragOver}`} style={{backgroundImage:`url(${tempURL})`}}>
+      {/* 大頭照PART */}
+      <div className={`thumb-nail ${dragOver}`}>
+        <img src={prevUrl} alt='' className='previmg' />
         {/* 大頭照input file */}
         <input
           type='file'
+          accept='image/*'
           className='file-upload'
           onChange={handleFileChange}
           onDragEnter={(e) => {
@@ -68,9 +123,14 @@ export default function Member() {
             e.preventDefault()
             setDragOver('')
           }}
+          onDrop={(e) => {
+            setDragOver('')
+          }}
         />
-        <img src={upload_img} className='upload-img' />
+        <img src={cloud_icon} className='cloud_icon' />
       </div>
+
+      {/* 個人資訊 */}
       <div className='email'>{user.email}</div>
       <label>
         <span>姓名：</span>
@@ -111,6 +171,25 @@ export default function Member() {
       </label>
       {!isPending && <button>更 新 資 料</button>}
       {isPending && <button disabled>資 料 更 新 中.....</button>}
+      {finishedUpload && (
+        <div
+          className='finished_upload'
+          onClick={(e) => {
+            setFinishedUpload(!finishedUpload)
+          }}
+        >
+          <div>
+            資料更新成功
+            <button
+              onClick={(e) => {
+                setFinishedUpload(!finishedUpload)
+              }}
+            >
+              確認
+            </button>
+          </div>
+        </div>
+      )}
     </form>
   )
 }

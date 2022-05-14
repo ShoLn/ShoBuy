@@ -7,7 +7,6 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-
   .pen {
     position: absolute;
     top: 20px;
@@ -21,16 +20,21 @@
   }
   // 大頭貼
   .thumb-nail {
+    position: relative;
     width: 200px;
     height: 200px;
-    background-size: 100%;
-    border-radius: 50%;
-    margin: 10px 0;
-    position: relative;
     &:hover {
       opacity: 0.5;
     }
-    .upload-img {
+
+    .previmg {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      clip-path: circle();
+      object-fit: cover;
+    }
+    .cloud_icon {
       position: absolute;
       width: 40px;
       height: 40px;
@@ -41,9 +45,7 @@
       width: 100%;
       height: 100%;
       opacity: 0;
-      &:hover {
-        cursor: pointer;
-      }
+      cursor: pointer;
     }
   }
   .drag-over {
@@ -69,10 +71,10 @@
       width: 300px;
       height: 35px;
       padding: 0px 10px;
-      border: 2px solid rgba(64, 141, 95, 0.8);
+      border: 2.5px solid rgba($color: #678258, $alpha: 0.7);
       &:focus {
         outline: none;
-        border: 1.5px solid rgb(147, 146, 146);
+        border: 1px solid rgba($color: #898989, $alpha: 1);
       }
       &:read-only {
         border: 1px solid black;
@@ -80,7 +82,7 @@
     }
   }
   button {
-    height: 35px;
+    height: 40px;
     border: 1px solid black;
     background-color: black;
     font-size: 1.2rem;
@@ -90,6 +92,35 @@
     cursor: pointer;
     &:hover {
       opacity: 0.5;
+    }
+  }
+  .finished_upload {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($color: #c4c3c3, $alpha: 0.7);
+    display: flex;
+    justify-content: center;
+
+    div {
+      margin-top: 150px;
+      width: 300px;
+      height: 130px;
+      background-color: #ffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      border: 2px solid black;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      button {
+        width: 30%;
+        height: 30px;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
     }
   }
 }
