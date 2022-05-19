@@ -1,3 +1,19 @@
 @import '../../scss/export';
 
+.home {
+  .product_container {
+    max-width: $width1;
+    margin: 60px auto;
+    display: flex;
+    flex-wrap: wrap;
 
+    .product_item {
+      margin: 20px 15px;
+      img {
+        width: 305px;
+        height: 305px;
+        object-fit: cover;
+      }
+    }
+  }
+}

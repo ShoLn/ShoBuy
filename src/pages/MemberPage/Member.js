@@ -9,6 +9,9 @@ import { storage } from '../../firebase/config'
 import pen from '../../icon/pen.png'
 import cloud_icon from '../../icon/cloud_icon.png'
 
+// component
+import Popout from '../../components/Popout'
+
 export default function Member() {
   const { user, dispatch } = useAuthContext()
   const [displayName, setDisplayName] = useState(user.displayName)
@@ -172,23 +175,7 @@ export default function Member() {
       {!isPending && <button>更 新 資 料</button>}
       {isPending && <button disabled>資 料 更 新 中.....</button>}
       {finishedUpload && (
-        <div
-          className='finished_upload'
-          onClick={(e) => {
-            setFinishedUpload(!finishedUpload)
-          }}
-        >
-          <div>
-            資料更新成功
-            <button
-              onClick={(e) => {
-                setFinishedUpload(!finishedUpload)
-              }}
-            >
-              確認
-            </button>
-          </div>
-        </div>
+        <Popout setFinishedUpload={setFinishedUpload} message='資料更新成功' />
       )}
     </form>
   )

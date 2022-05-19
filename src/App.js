@@ -8,6 +8,7 @@ import Login from './pages/LoginPage/Login'
 import Signup from './pages/SignupPage/Signup'
 import Cart from './pages/CartPage/Cart'
 import Member from './pages/MemberPage/Member'
+import Seller from './pages/SellerPage/Seller'
 
 // components
 import Navbar from './components/Navbar/Navbar'
@@ -42,6 +43,7 @@ export default function App() {
               path='/Cart'
               element={!user ? <Navigate to='/Login' /> : <Cart />}
             />
+            <Route path='/Seller' element={<Seller />} />
           </Routes>
           <Footer />
         </BrowserRouter>
