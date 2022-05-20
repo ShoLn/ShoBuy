@@ -1,0 +1,23 @@
+.product_item {
+  margin: 20px 27.5px;
+
+  img {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+  }
+  .title {
+    font-weight: bolder;
+    color: black;
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+  .sucForTool_sort1 {
+    font-size: 0.8rem;
+  }
+  .price {
+    font-size: 0.8rem;
+    margin-top: 5px;
+  }
+}

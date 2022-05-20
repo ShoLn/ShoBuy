@@ -2,6 +2,13 @@ import React from 'react'
 import './App.scss'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
+// components
+import Navbar from './components/Navbar/Navbar'
+import Footer from './components/footer/Footer'
+
+// hooks
+import { useAuthContext } from './hooks/useAuthContext'
+
 // pages
 import Home from './pages/HomePage/Home'
 import Login from './pages/LoginPage/Login'
@@ -9,13 +16,7 @@ import Signup from './pages/SignupPage/Signup'
 import Cart from './pages/CartPage/Cart'
 import Member from './pages/MemberPage/Member'
 import Seller from './pages/SellerPage/Seller'
-
-// components
-import Navbar from './components/Navbar/Navbar'
-import Footer from './components/footer/Footer'
-
-// hooks
-import { useAuthContext } from './hooks/useAuthContext'
+import Product from './pages/ProductPage/Product'
 
 export default function App() {
   const { authIsReady, user } = useAuthContext()
@@ -36,7 +37,7 @@ export default function App() {
               element={user ? <Navigate to='/member' /> : <Signup />}
             />
             <Route
-              path='/member'
+              path='/Member'
               element={!user ? <Navigate to='/Login' /> : <Member />}
             />
             <Route
@@ -44,6 +45,7 @@ export default function App() {
               element={!user ? <Navigate to='/Login' /> : <Cart />}
             />
             <Route path='/Seller' element={<Seller />} />
+            <Route path='/Product/:ProductId' element={<Product />} />
           </Routes>
           <Footer />
         </BrowserRouter>

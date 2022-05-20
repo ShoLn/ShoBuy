@@ -18,12 +18,21 @@ export default function Navbar() {
     '塊根',
     '百合科-12卷屬'
   ])
-  const [item2, setItem2] = useState(['雨林植物', '雨林1', '雨林2'])
+  const [item2, setItem2] = useState([
+    '雨林植物',
+    '雨林1',
+    '雨林2',
+    '雨林3',
+    '雨林4',
+    '雨林5'
+  ])
   const [item3, setItem3] = useState([
-    '盆栽大小',
-    '大 SIZE',
-    '中 SIZE',
-    '小 SIZE'
+    '園藝工具',
+    '工具1',
+    '工具2',
+    '工具3',
+    '工具4',
+    '工具5'
   ])
 
   const { user } = useAuthContext()

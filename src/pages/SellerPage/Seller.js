@@ -15,7 +15,7 @@ import Popout from '../../components/Popout'
 
 export default function Seller() {
   const [title, setTitle] = useState('')
-  const [sucFor, setSucFor] = useState('default')
+  const [sucForTool, setSucForTool] = useState('default')
   const [sort1, setSort1] = useState('default')
   const [size, setSize] = useState('default')
   const [price, setPrice] = useState('')
@@ -64,7 +64,7 @@ export default function Seller() {
     const creatAt = timestamp.fromDate(new Date())
     let imgUrls = []
     const storageUpload = async (imgFile, index) => {
-      const uploadPath = `products/${sucFor}/${sort1}/${size}/${productId}/${index}`
+      const uploadPath = `products/${sucForTool}/${sort1}/${size}/${productId}/${index}`
       const ImgStorage = await storage.ref(uploadPath).put(imgFile.file)
       const ImgStorageUrl = await ImgStorage.ref.getDownloadURL()
       imgUrls.push(ImgStorageUrl)
@@ -78,7 +78,7 @@ export default function Seller() {
       creatAt,
       productId,
       title,
-      sucFor,
+      sucForTool,
       sort1,
       size,
       price,
@@ -91,7 +91,7 @@ export default function Seller() {
 
     // 清空表格
     setTitle('')
-    setSucFor('default')
+    setSucForTool('default')
     setSort1('default')
     setSize('default')
     setPrice('')
@@ -164,12 +164,12 @@ export default function Seller() {
             }}
           />
 
-          {/* 多肉或雨林 */}
+          {/* 多肉或雨林或工具 */}
           <div className='select_div'>
             <select
-              value={sucFor}
+              value={sucForTool}
               onChange={(e) => {
-                setSucFor(e.target.value)
+                setSucForTool(e.target.value)
               }}
             >
               <option value='default' disabled>
@@ -177,6 +177,7 @@ export default function Seller() {
               </option>
               <option value='多肉植物'>多肉植物</option>
               <option value='雨林植物'>雨林植物</option>
+              <option value='園藝工具'>園藝工具</option>
             </select>
             <img src={arrow_down} />
           </div>
@@ -190,7 +191,7 @@ export default function Seller() {
                 setSort1(e.target.value)
               }}
             >
-              {sucFor === '多肉植物' ? (
+              {sucForTool === '多肉植物' && (
                 <>
                   <option value='default' disabled>
                     請選擇子類別
@@ -201,7 +202,8 @@ export default function Seller() {
                   <option value='多肉4'>多肉4</option>
                   <option value='多肉5'>多肉5</option>
                 </>
-              ) : (
+              )}
+              {sucForTool === '雨林植物' && (
                 <>
                   <option value='default' disabled>
                     請選擇子類別
@@ -211,6 +213,18 @@ export default function Seller() {
                   <option value='雨林3'>雨林3</option>
                   <option value='雨林4'>雨林4</option>
                   <option value='雨林5'>雨林5</option>
+                </>
+              )}
+              {sucForTool === '園藝工具' && (
+                <>
+                  <option value='default' disabled>
+                    請選擇子類別
+                  </option>
+                  <option value='工具1'>工具1</option>
+                  <option value='工具2'>工具2</option>
+                  <option value='工具3'>工具3</option>
+                  <option value='工具4'>工具4</option>
+                  <option value='工具5'>工具5</option>
                 </>
               )}
             </select>
