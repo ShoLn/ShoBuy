@@ -1,0 +1,54 @@
+$mainwidth: 380px;
+
+.product_slider {
+  // react slick
+
+  .slick-slider {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: $mainwidth;
+    // left button
+    .slick-prev {
+      z-index: 1;
+      left: 5px;
+      top: $mainwidth/2;
+      transform: translateY(-50%);
+    }
+    // right button
+    .slick-next {
+      z-index: 1;
+      right: 5px;
+      top: $mainwidth/2;
+      transform: translateY(-50%);
+    }
+    // main img
+    img {
+      width: $mainwidth;
+      height: $mainwidth;
+      object-fit: cover;
+      cursor: grab;
+    }
+    // below image
+    ul {
+      position: relative;
+      top: 0;
+      text-align: start;
+      li {
+        width: $mainwidth/3;
+        height: $mainwidth/3;
+        margin: 0;
+        opacity: 0.8;
+        text-align: center;
+        img {
+          width: ($mainwidth/3)-2;
+          height: ($mainwidth/3)-2;
+          cursor: pointer;
+        }
+      }
+      .slick-active {
+        opacity: 1;
+      }
+    }
+  }
+}

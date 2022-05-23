@@ -13,10 +13,11 @@ import cart from '../../icon/cart.png'
 export default function Navbar() {
   const [item1, setItem1] = useState([
     '多肉植物',
-    '龍舌蘭',
-    '景天',
-    '塊根',
-    '百合科-12卷屬'
+    '多肉1',
+    '多肉2',
+    '多肉3',
+    '多肉4',
+    '多肉5'
   ])
   const [item2, setItem2] = useState([
     '雨林植物',

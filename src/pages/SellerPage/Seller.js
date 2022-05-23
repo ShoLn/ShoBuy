@@ -23,6 +23,7 @@ export default function Seller() {
   const [description, setDiscription] = useState('')
 
   const [imgFiles, setImgFiles] = useState('')
+  console.log(imgFiles)
   const [isPending, setIsPending] = useState(false)
   const [finishedUpload, setFinishedUpload] = useState(false)
 
@@ -41,8 +42,6 @@ export default function Seller() {
       })
 
       setImgFiles((prevImgFiles) => [...prevImgFiles, ...files])
-    } else {
-      setImgFiles((prevImgFiles) => [...prevImgFiles])
     }
   }
   // 照片 delete 事件
@@ -54,6 +53,15 @@ export default function Seller() {
         [...prevImgFiles].filter((prevImgFile) => prevImgFile.fid !== deleteId)
       )
     }
+  }
+
+  // 變更主要顯示圖片事件
+  const handleMainUrl = (index) => {
+    setImgFiles((prevImgFiles) => [
+      prevImgFiles[index],
+      ...prevImgFiles.slice(0, index),
+      ...prevImgFiles.slice(index + 1)
+    ])
   }
 
   // 上架商品 submit 事件
@@ -112,13 +120,13 @@ export default function Seller() {
             {imgFiles && (
               <div className='first no_border'>
                 <img src={imgFiles[0].viewUrl} className='first' />
-                <img
+                {/* <img
                   src={trash_can}
                   className='delete'
                   onClick={(e) => {
                     handleDelete(imgFiles[0].fid)
                   }}
-                />
+                /> */}
               </div>
             )}
             {!imgFiles && (
@@ -136,10 +144,16 @@ export default function Seller() {
           </div>
           {/* 其他次要圖片顯示區域 */}
           <div className='secondary'>
-            {imgFiles.slice(1) &&
-              imgFiles.slice(1).map((imgfile) => (
+            {imgFiles &&
+              imgFiles.map((imgfile, index) => (
                 <div key={imgfile.fid} className='second'>
-                  <img src={imgfile.viewUrl} className='second' />
+                  <img
+                    src={imgfile.viewUrl}
+                    className='second'
+                    onClick={(e) => {
+                      handleMainUrl(index)
+                    }}
+                  />
                   <img
                     src={trash_can}
                     className='delete'
@@ -191,7 +205,7 @@ export default function Seller() {
                 setSort1(e.target.value)
               }}
             >
-              {sucForTool === '多肉植物' && (
+              {(sucForTool !== '雨林植物') & (sucForTool !== '園藝工具') && (
                 <>
                   <option value='default' disabled>
                     請選擇子類別

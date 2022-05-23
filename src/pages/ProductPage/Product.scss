@@ -1,0 +1,11 @@
+@import '../../scss/export';
+
+.Product {
+  max-width: 1000px;
+  border: 1px solid red;
+  margin: 50px auto;
+  .product_container {
+    display: flex;
+    justify-content: flex-start;
+  }
+}

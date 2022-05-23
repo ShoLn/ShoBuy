@@ -45,7 +45,7 @@ export default function App() {
               element={!user ? <Navigate to='/Login' /> : <Cart />}
             />
             <Route path='/Seller' element={<Seller />} />
-            <Route path='/Product/:ProductId' element={<Product />} />
+            <Route path='/Product/:productId' element={<Product />} />
           </Routes>
           <Footer />
         </BrowserRouter>
