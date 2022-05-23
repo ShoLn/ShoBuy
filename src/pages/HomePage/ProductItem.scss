@@ -1,9 +1,11 @@
+$item_margin_lr: 10px;
+
 .product_item {
-  margin: 20px 27.5px;
+  margin: 20px $item_margin_lr;
 
   img {
-    width: 280px;
-    height: 280px;
+    width: 335px - (2 * $item_margin_lr);
+    height: 335px - (2 * $item_margin_lr);
     object-fit: cover;
   }
   .title {

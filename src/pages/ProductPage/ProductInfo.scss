@@ -1,0 +1,14 @@
+.product_info {
+  margin: 0 50px;
+  .title {
+    font-size: 2em;
+    font-weight: bolder;
+    left: -20px;
+    top: -8px;
+  }
+  .price {
+    font-weight: 600;
+    font-size: 1.5em;
+    color: rgba($color: #0f614f, $alpha: 1);
+  }
+}

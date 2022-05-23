@@ -23,7 +23,9 @@ export default function ProductItem({ product }) {
       <div className='sucForTool_sort1'>
         {product.sucForTool} | {product.sort1}
       </div>
-      <div className='price'>${product.price} NT</div>
+      <div className='price'>
+        NT$ {new Intl.NumberFormat('en-US').format(product.price)}
+      </div>
     </div>
   )
 }

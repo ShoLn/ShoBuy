@@ -1,8 +1,9 @@
 $mainwidth: 380px;
+$mainwidth_big: 50vw;
 
 .product_slider {
   // react slick
-
+  position: relative;
   .slick-slider {
     display: flex;
     flex-direction: column;
@@ -27,7 +28,7 @@ $mainwidth: 380px;
       width: $mainwidth;
       height: $mainwidth;
       object-fit: cover;
-      cursor: grab;
+      cursor: zoom-in;
     }
     // below image
     ul {
@@ -48,6 +49,48 @@ $mainwidth: 380px;
       }
       .slick-active {
         opacity: 1;
+      }
+    }
+  }
+  .big_pic_container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: rgba($color: #8c8c8c, $alpha: 0.5);
+    z-index: 10000;
+    .slick-slider {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: $mainwidth_big;
+      // left button
+      .slick-prev {
+        z-index: 1;
+        left: 5px;
+        top: $mainwidth_big/2;
+        transform: translateY(-50%);
+      }
+      // right button
+      .slick-next {
+        z-index: 1;
+        right: 5px;
+        top: $mainwidth_big/2;
+        transform: translateY(-50%);
+      }
+      // main img
+      img {
+        top: -50vw;
+        transform: translateY(50vw);
+        width: $mainwidth_big;
+        height: $mainwidth_big;
+        transition: transform 2s ease-in;
+        object-fit: cover;
+        border: 1px solid white;
+        cursor: grab;
       }
     }
   }
