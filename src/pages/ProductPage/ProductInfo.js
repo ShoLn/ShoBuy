@@ -1,10 +1,31 @@
 import React, { useState } from 'react'
 import './ProductInfo.scss'
+import { useAuthContext } from '../../hooks/useAuthContext'
+import { db, FieldValue } from '../../firebase/config'
+import { useNavigate } from 'react-router-dom'
 
 export default function ProductInfo({ productData }) {
-  const [BuyNumber, setBuyNumber] = useState(1)
+  const [buyNumber, setBuyNumber] = useState(1)
+  const { user } = useAuthContext()
+  const navigate = useNavigate()
+
+  const handleAddToCart = async (e) => {
+    e.preventDefault()
+    if (user === null) {
+      navigate('/member')
+    } else {
+      let cartsRef = db.collection('carts').doc(user.uid)
+      cartsRef.set(
+        {
+          productId: FieldValue.arrayUnion(productData.productId)
+        },
+        { merge: true }
+      )
+    }
+  }
+
   return (
-    <div className='product_info'>
+    <form className='product_info' onSubmit={handleAddToCart}>
       {/* 商品名稱 */}
       <div className='title'>【 {productData.title} 】</div>
       {/* 商品價格 */}
@@ -13,8 +34,8 @@ export default function ProductInfo({ productData }) {
       </div>
       {/* 商品分類 */}
       <div className='sucForTool_container'>
-        <div className='sucForTool1'>商品分類: </div>
-        <div className='sucForTool'>{productData.sucForTool}</div>
+        <div className='sucForTool1'>商品分類：</div>
+        <div className='sucForTool'>{productData.sucForTool} |&nbsp;</div>
         {/* 子分類1 */}
         <div className='sort1'>{productData.sort1}</div>
       </div>
@@ -25,43 +46,16 @@ export default function ProductInfo({ productData }) {
       </div>
       {/* 商品購買數量 */}
       <div className='buy_number'>
-        <div>購買數量：</div>
-        <span
-          className='left'
-          onClick={(e) => {
-            setBuyNumber((prevNum) => {
-              if (prevNum > 1) {
-                return prevNum - 1
-              } else {
-                return 1
-              }
-            })
-          }}
-        >
-          -
-        </span>
-        <input
-          type='number'
-          placeholder='數量'
-          value={BuyNumber}
-          onChange={(e) => {
-            setBuyNumber(parseInt(e.target.value, 10))
-          }}
-        />
-        <span
-          className='right'
-          onClick={(e) => {
-            setBuyNumber((prevNum) => {
-              return prevNum + 1
-            })
-          }}
-        >
-          +
-        </span>
+        <div>商品數量：</div>
         <div className='last_number'>
           剩最後 <span>{productData.productNumber}</span> 件
         </div>
       </div>
-    </div>
+      <button>加 入 購 物 車</button>
+      <hr />
+      <div className='description_container'>
+        <div className='description'>{productData.description}</div>
+      </div>
+    </form>
   )
 }

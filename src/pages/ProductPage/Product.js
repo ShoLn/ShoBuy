@@ -29,6 +29,10 @@ export default function Product() {
         <ProductSlider imgUrls={productData.imgUrls} />
         <ProductInfo productData={productData}/>
       </div>
+      <div className='middle'/>
+      <div className="big_img_container">
+        {productData && productData.imgUrls.map((imgurl,index)=>(<img src={imgurl} key={index} />))}
+      </div>
     </div>
   )
 }

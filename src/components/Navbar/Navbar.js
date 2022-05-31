@@ -1,10 +1,14 @@
 import React from 'react'
 import './Navbar.scss'
-import Navitem from './Navitem'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useLogout } from '../../hooks/useLogout'
+
+// components
+import Navitem from './Navitem'
+import Cart from './Cart'
+
 // img
 import magnifier from '../../icon/magnifier.png'
 import member from '../../icon/member.png'
@@ -36,6 +40,8 @@ export default function Navbar() {
     '工具5'
   ])
 
+  const [isCartOpen, setIsCartOpen] = useState(false)
+
   const { user } = useAuthContext()
   const { logout } = useLogout()
 
@@ -61,9 +67,14 @@ export default function Navbar() {
           <Link to='/Login'>
             <img src={member} className='member' title='會員頁面' />
           </Link>
-          <Link to='/Cart'>
-            <img src={cart} className='cart' title='購物車' />
-          </Link>
+          <div
+            className='cart_icon_container'
+            onClick={(e) => {
+              setIsCartOpen(true)
+            }}
+          >
+            <img src={cart} className='cart_icon' title='購物車' />
+          </div>
           {user && (
             <div
               className='logout'
@@ -76,6 +87,8 @@ export default function Navbar() {
           )}
         </div>
       </div>
+      {/* 購物車component */}
+      <Cart setIsCartOpen={setIsCartOpen} isCartOpen={isCartOpen} />
     </div>
   )
 }

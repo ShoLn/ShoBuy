@@ -67,6 +67,17 @@ $mainwidth_big: 50vw;
       flex-direction: column;
       position: relative;
       width: $mainwidth_big;
+      animation: 0.5s moveBig;
+      top: 20px;
+      @keyframes moveBig {
+        0% {
+          top: -50vw;
+        }
+        100% {
+          top: 20px;
+        }
+      }
+      transition: transform 1s ease;
       // left button
       .slick-prev {
         z-index: 1;
@@ -83,11 +94,8 @@ $mainwidth_big: 50vw;
       }
       // main img
       img {
-        top: -50vw;
-        transform: translateY(50vw);
         width: $mainwidth_big;
         height: $mainwidth_big;
-        transition: transform 2s ease-in;
         object-fit: cover;
         border: 1px solid white;
         cursor: grab;

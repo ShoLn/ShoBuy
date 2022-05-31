@@ -23,6 +23,7 @@ export const useSignup = () => {
 
       // create user document in firestore member collection
       await dbSet('members', res.user.uid, {
+        cart:[],
         uid: res.user.uid,
         displayName,
         email,
@@ -35,6 +36,7 @@ export const useSignup = () => {
       dispatch({
         type: 'LOGIN',
         payload: {
+          cart:[],
           uid: res.user.uid,
           displayName,
           address,
