@@ -19,10 +19,7 @@ export default function Cart({ setIsCartOpen, isCartOpen }) {
   // 前往結賬
   const handleCheckout = async (e) => {
     e.preventDefault()
-    await db
-      .collection('checkout')
-      .doc(user.uid)
-      .set({ products, total, confirm: false })
+    await db.collection('checkout').doc(user.uid).set({ products, total })
     setIsCartOpen(false)
     navigate('/Checkout')
   }
@@ -93,6 +90,8 @@ export default function Cart({ setIsCartOpen, isCartOpen }) {
   // 從資料庫拿購物車資料
   useEffect(() => {
     if (user === null) {
+      setProducts([])
+      setTotal('')
       return
     } else {
       const unsub = db
@@ -102,12 +101,17 @@ export default function Cart({ setIsCartOpen, isCartOpen }) {
           if (doc.exists) {
             let cartItem = doc.data().productId
             getProductById(cartItem)
+          } else {
+            setProducts([])
+            setTotal('')
+            return
           }
         })
       return () => unsub()
     }
-  }, [])
+  }, [user])
 
+  // 頁面render
   return (
     <div
       className={`cart ${isCartOpen ? 'cart_open' : ''}`}

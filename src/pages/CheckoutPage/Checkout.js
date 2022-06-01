@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import './Checkout.scss'
-import { db } from '../../firebase/config'
+import { db, timestamp } from '../../firebase/config'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { stores } from '../../711/711Store'
+import { v4 as uuidv4 } from 'uuid'
+import { useFirestore } from '../../hooks/useFirestore'
+import { useNavigate } from 'react-router-dom'
+
 
 //imgs
 import seven_logo from '../../icon/seven_logo.png'
@@ -12,13 +16,16 @@ export default function Checkout() {
   const [name, setName] = useState(user.displayName)
   const [phone, setPhone] = useState(user.phone)
   const [storeState, setStoreState] = useState('')
-
   const [checkoutObj, setCheckoutObj] = useState({
-    confirm: false,
     products: [],
     total: 0
   })
+  const [isPending, setIsPending] = useState(false)
+  const { dbSet, dbDelete } = useFirestore()
+  const navigate = useNavigate()
 
+
+  // 從checkout 資料庫抓取資料
   useEffect(() => {
     const unsub = db
       .collection('checkout')
@@ -31,8 +38,28 @@ export default function Checkout() {
     return () => unsub()
   }, [])
 
-  const handleSubmit = (e) => {
+  // 提交訂單
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setIsPending(true)
+    let oid = uuidv4()
+    const doc = {
+      uid: user.uid,
+      oid,
+      products: checkoutObj.products,
+      total:checkoutObj.total,
+      order_date: timestamp.fromDate(new Date()),
+      name,
+      phone,
+      store: `7-11 ${storeState}門市 店號：${stores.filter((store) => store.店名 === storeState)[0]['店號']}`,
+      isSend: false,
+      done: false
+    }
+    await dbSet('orders', oid, doc)
+    await dbDelete('carts',user.uid)
+    await dbDelete('checkout',user.uid)
+    setIsPending(false)
+    navigate('/member')
   }
 
   return (
@@ -83,6 +110,7 @@ export default function Checkout() {
             onChange={(e) => {
               setName(e.target.value)
             }}
+            required
           />
           <span className='notification'>
             請填入收件人真實姓名，以確保順利收件
@@ -97,6 +125,7 @@ export default function Checkout() {
             onChange={(e) => {
               setPhone(e.target.value)
             }}
+            required
           />
           <span className='notification'>
             請確認手機號碼，
@@ -120,6 +149,7 @@ export default function Checkout() {
                 setStoreState(e.target.value)
               }}
               placeholder='請輸入 門市名稱 或 地址'
+              required
             />
             <datalist id='store_list'>
               {stores.map((store, index) => {

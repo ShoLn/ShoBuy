@@ -11,6 +11,7 @@ import cloud_icon from '../../icon/cloud_icon.png'
 
 // component
 import Popout from '../../components/Popout'
+import Order from './Order'
 
 export default function Member() {
   const { user, dispatch } = useAuthContext()
@@ -99,84 +100,92 @@ export default function Member() {
   }
 
   return (
-    <form className='member' onSubmit={handleSubmit}>
-      {/*  筆的icon */}
-      <img
-        className='pen'
-        src={pen}
-        title='編輯會員資料'
-        onClick={(e) => {
-          setReadonly(!readonly)
-        }}
-      />
-      {/* 大頭照PART */}
-      <div className={`thumb-nail ${dragOver}`}>
-        <img src={prevUrl} alt='' className='previmg' />
-        {/* 大頭照input file */}
-        <input
-          type='file'
-          accept='image/*'
-          className='file-upload'
-          onChange={handleFileChange}
-          onDragEnter={(e) => {
-            e.preventDefault()
-            setDragOver('drag-over')
-          }}
-          onDragLeave={(e) => {
-            e.preventDefault()
-            setDragOver('')
-          }}
-          onDrop={(e) => {
-            setDragOver('')
+    <div className='member'>
+      {/* 左半部會員資料 */}
+      <form className='member_info' onSubmit={handleSubmit}>
+        {/*  筆的icon */}
+        <img
+          className='pen'
+          src={pen}
+          title='編輯會員資料'
+          onClick={(e) => {
+            setReadonly(!readonly)
           }}
         />
-        <img src={cloud_icon} className='cloud_icon' />
-      </div>
+        {/* 大頭照PART */}
+        <div className={`thumb-nail ${dragOver}`}>
+          <img src={prevUrl} alt='' className='previmg' />
+          {/* 大頭照input file */}
+          <input
+            type='file'
+            accept='image/*'
+            className='file-upload'
+            onChange={handleFileChange}
+            onDragEnter={(e) => {
+              e.preventDefault()
+              setDragOver('drag-over')
+            }}
+            onDragLeave={(e) => {
+              e.preventDefault()
+              setDragOver('')
+            }}
+            onDrop={(e) => {
+              setDragOver('')
+            }}
+          />
+          <img src={cloud_icon} className='cloud_icon' />
+        </div>
 
-      {/* 個人資訊 */}
-      <div className='email'>{user.email}</div>
-      <label>
-        <span>姓名：</span>
-        <input
-          type='text'
-          value={displayName}
-          onChange={(e) => {
-            setDisplayName(e.target.value)
-          }}
-          readOnly={readonly}
-        />
-      </label>
-      <label>
-        <span>手機：</span>
-        <input
-          type='text'
-          minLength='10'
-          maxLength='10'
-          pattern='[0-9]+'
-          required
-          value={phone}
-          onChange={(e) => {
-            setPhone(e.target.value)
-          }}
-          readOnly={readonly}
-        />
-      </label>
-      <label>
-        <span>地址：</span>
-        <input
-          type='text'
-          value={address}
-          onChange={(e) => {
-            setAddress(e.target.value)
-          }}
-          readOnly={readonly}
-        />
-      </label>
-      {!isPending && <button>更 新 資 料</button>}
-      {isPending && <button disabled>資 料 更 新 中.....</button>}
-      {finishedUpload && (
-        <Popout setFinishedUpload={setFinishedUpload} message='資料更新成功' />
-      )}
-    </form>
+        {/* 個人資訊 */}
+        <div className='email'>{user.email}</div>
+        <label>
+          <span>姓名：</span>
+          <input
+            type='text'
+            value={displayName}
+            onChange={(e) => {
+              setDisplayName(e.target.value)
+            }}
+            readOnly={readonly}
+          />
+        </label>
+        <label>
+          <span>手機：</span>
+          <input
+            type='text'
+            minLength='10'
+            maxLength='10'
+            pattern='[0-9]+'
+            required
+            value={phone}
+            onChange={(e) => {
+              setPhone(e.target.value)
+            }}
+            readOnly={readonly}
+          />
+        </label>
+        <label>
+          <span>地址：</span>
+          <input
+            type='text'
+            value={address}
+            onChange={(e) => {
+              setAddress(e.target.value)
+            }}
+            readOnly={readonly}
+          />
+        </label>
+        {!isPending && <button>更 新 資 料</button>}
+        {isPending && <button disabled>資 料 更 新 中.....</button>}
+        {finishedUpload && (
+          <Popout
+            setFinishedUpload={setFinishedUpload}
+            message='資料更新成功'
+          />
+        )}
+      </form>
+      {/* 右半部訂單 */}
+      <Order />
+    </div>
   )
 }

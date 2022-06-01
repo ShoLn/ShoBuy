@@ -19,7 +19,7 @@ export const useFirestore = () => {
   }
 
   const dbDelete = async (collectioin, docId) => {
-    db.collection(collectioin.delete())
+    db.collection(collectioin).doc(docId).delete()
   }
 
   const dbGet = async (collectioin, docId) => {

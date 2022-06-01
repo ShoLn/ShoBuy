@@ -21,9 +21,7 @@ export default function Seller() {
   const [price, setPrice] = useState('')
   const [productNumber, setProductNumber] = useState(0)
   const [description, setDiscription] = useState('')
-
   const [imgFiles, setImgFiles] = useState('')
-  console.log(imgFiles)
   const [isPending, setIsPending] = useState(false)
   const [finishedUpload, setFinishedUpload] = useState(false)
 

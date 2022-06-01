@@ -33,7 +33,7 @@ export default function Login() {
       .sendPasswordResetEmail(resetEmail)
       .then(() => {
         setIsEmailPending(false)
-        setEmailSendResult('郵件已寄送，請前往信箱查看！')
+        setEmailSendResult('郵件已寄送，請前往信箱（或垃圾郵件中）查看！')
       })
       .catch(() => {
         setIsEmailPending(false)
