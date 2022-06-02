@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Home.scss'
-
+import { useParams } from 'react-router-dom'
 
 // hooks
 import { db } from '../../firebase/config'
@@ -11,6 +11,10 @@ import ProductItem from './ProductItem'
 export default function Home() {
   const [products, setProducts] = useState([])
   const [sortType, setSortType] = useState('latest')
+  const { searchSuc } = useParams()
+  const { searchForest } = useParams()
+  const { searchTool } = useParams()
+  console.log(searchSuc)
 
   // 從firestore抓取所有商品資料
   useEffect(() => {
@@ -19,10 +23,18 @@ export default function Home() {
       snapshot.docs.forEach((doc) => {
         data.push(doc.data())
       })
+      // 檢查sort1更新 data
+      if (typeof searchSuc !== 'undefined') {
+        data = data.filter(d=>d.sort1 === searchSuc)
+      } else if(typeof searchForest !== 'undefined'){
+        data = data.filter(d=>d.sort1 === searchForest)
+      }else if(typeof searchTool !== 'undefined'){
+        data = data.filter(d=>d.sort1 === searchTool)
+      }
       setProducts(data)
     })
     return () => unsub()
-  }, [])
+  }, [searchSuc,searchForest,searchTool])
 
   // 商品排列順序
   products.sort((a, b) => {

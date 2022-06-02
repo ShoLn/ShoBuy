@@ -19,6 +19,7 @@
     flex-direction: column;
     align-items: center;
     overscroll-behavior: contain;
+    z-index: 100;
     .close {
       width: 25px;
       height: 25px;

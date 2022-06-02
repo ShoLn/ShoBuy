@@ -25,6 +25,38 @@ export default function Seller() {
   const [isPending, setIsPending] = useState(false)
   const [finishedUpload, setFinishedUpload] = useState(false)
 
+  const suc = [
+    '景天',
+    '12之卷',
+    '番杏科',
+    '龍舌蘭',
+    '虎尾蘭',
+    '塊根',
+    '仙人掌',
+    '大戟'
+  ]
+
+  const forest = [
+    '蔓綠絨',
+    '彩葉芋',
+    '水芋',
+    '合果芋',
+    '觀音蓮',
+    '龜背芋',
+    '秋海棠',
+    '電光蘭'
+  ]
+
+  const tool = [
+    '多肉植物介質',
+    '雨林植物介質',
+    '圓盆',
+    '分盆',
+    '鏟子',
+    '端盤',
+    '肥料'
+  ]
+
   const { dbSet } = useFirestore()
 
   // 照片 CHANGE 事件
@@ -208,11 +240,11 @@ export default function Seller() {
                   <option value='default' disabled>
                     請選擇子類別
                   </option>
-                  <option value='多肉1'>多肉1</option>
-                  <option value='多肉2'>多肉2</option>
-                  <option value='多肉3'>多肉3</option>
-                  <option value='多肉4'>多肉4</option>
-                  <option value='多肉5'>多肉5</option>
+                  {suc.map((e, index) => (
+                    <option value={e} key={index}>
+                      {e}
+                    </option>
+                  ))}
                 </>
               )}
               {sucForTool === '雨林植物' && (
@@ -220,11 +252,11 @@ export default function Seller() {
                   <option value='default' disabled>
                     請選擇子類別
                   </option>
-                  <option value='雨林1'>雨林1</option>
-                  <option value='雨林2'>雨林2</option>
-                  <option value='雨林3'>雨林3</option>
-                  <option value='雨林4'>雨林4</option>
-                  <option value='雨林5'>雨林5</option>
+                  {forest.map((e, index) => (
+                    <option value={e} key={index}>
+                      {e}
+                    </option>
+                  ))}
                 </>
               )}
               {sucForTool === '園藝工具' && (
@@ -232,11 +264,11 @@ export default function Seller() {
                   <option value='default' disabled>
                     請選擇子類別
                   </option>
-                  <option value='工具1'>工具1</option>
-                  <option value='工具2'>工具2</option>
-                  <option value='工具3'>工具3</option>
-                  <option value='工具4'>工具4</option>
-                  <option value='工具5'>工具5</option>
+                  {tool.map((e, index) => (
+                    <option value={e} key={index}>
+                      {e}
+                    </option>
+                  ))}
                 </>
               )}
             </select>

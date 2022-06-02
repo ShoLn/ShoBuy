@@ -30,6 +30,9 @@ export default function App() {
           <Navbar />
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='/searchSuc/:searchSuc' element={<Home />} />
+            <Route path='/searchforest/:searchForest' element={<Home />} />
+            <Route path='/searchTool/:searchTool' element={<Home />} />
             <Route
               path='/Login'
               element={user ? <Navigate to='/member' /> : <Login />}
