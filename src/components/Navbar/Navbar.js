@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Navbar.scss'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useLogout } from '../../hooks/useLogout'
 import { db } from '../../firebase/config'
@@ -14,8 +14,7 @@ import magnifier from '../../icon/magnifier.png'
 import member from '../../icon/member.png'
 import cart from '../../icon/cart.png'
 
-
-export default function Navbar() {
+export default function Navbar({ openSearch, setOpenSearch }) {
   const [item1, setItem1] = useState([
     '多肉植物',
     '景天',
@@ -50,12 +49,14 @@ export default function Navbar() {
   ])
   const [buyNum, setBuyNum] = useState('')
   const [isCartOpen, setIsCartOpen] = useState(false)
+  const [keySearch, setKeySearch] = useState('')
+  const navigate = useNavigate()
 
   const { user } = useAuthContext()
   const { logout } = useLogout()
 
   useEffect(() => {
-    if(user === null) {
+    if (user === null) {
       setBuyNum('')
       return
     }
@@ -73,10 +74,32 @@ export default function Navbar() {
     return () => unsub()
   }, [user])
 
-
   return (
     <div className='Navbar'>
       <div className='nav-container'>
+        {/* 展開input */}
+        <input
+          className={`mag ${openSearch ? 'open_search' : ''}`}
+          type='text'
+          placeholder='請輸入欲搜尋項目'
+          value={keySearch}
+          onChange={(e) => {
+            setKeySearch(e.target.value)
+          }}
+          onClick={(e) => {
+            e.stopPropagation()
+          }}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              if (keySearch === '') {
+                return
+              } else {
+                setOpenSearch(false)
+                navigate(`/keySearch/${keySearch}`)
+              }
+            }
+          }}
+        />
         {/* 左半部 */}
         <div className='left'>
           <Link to='/' title='返回首頁'>
@@ -93,8 +116,24 @@ export default function Navbar() {
         <div className='right'>
           {/* 搜尋商品 */}
           <div className='search'>
-            <input className='mag' type='text' />
-            <img src={magnifier} className='magnifier' title='搜尋商品' />
+            <img
+              src={magnifier}
+              className='magnifier'
+              title='搜尋商品'
+              onClick={(e) => {
+                e.stopPropagation()
+                if (openSearch === true) {
+                  if (keySearch === '') {
+                    return
+                  } else {
+                    setOpenSearch(false)
+                    navigate(`/keySearch/${keySearch}`)
+                  }
+                } else {
+                  setOpenSearch(true)
+                }
+              }}
+            />
           </div>
           {/* 會員頁面 */}
           <Link to='/Login'>
@@ -107,7 +146,12 @@ export default function Navbar() {
               setIsCartOpen(true)
             }}
           >
-            <div className='cart_number' style={{opacity: buyNum? '1' :'0'}}>{buyNum}</div>
+            <div
+              className='cart_number'
+              style={{ opacity: buyNum ? '1' : '0' }}
+            >
+              {buyNum}
+            </div>
             <img src={cart} className='cart_icon' title='購物車' />
           </div>
           {/* 登出功能 */}

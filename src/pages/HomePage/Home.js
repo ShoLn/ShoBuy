@@ -14,7 +14,7 @@ export default function Home() {
   const { searchSuc } = useParams()
   const { searchForest } = useParams()
   const { searchTool } = useParams()
-  console.log(searchSuc)
+  const { keySearch } = useParams()
 
   // 從firestore抓取所有商品資料
   useEffect(() => {
@@ -25,16 +25,23 @@ export default function Home() {
       })
       // 檢查sort1更新 data
       if (typeof searchSuc !== 'undefined') {
-        data = data.filter(d=>d.sort1 === searchSuc)
-      } else if(typeof searchForest !== 'undefined'){
-        data = data.filter(d=>d.sort1 === searchForest)
-      }else if(typeof searchTool !== 'undefined'){
-        data = data.filter(d=>d.sort1 === searchTool)
+        data = data.filter((d) => d.sort1 === searchSuc)
+      } else if (typeof searchForest !== 'undefined') {
+        data = data.filter((d) => d.sort1 === searchForest)
+      } else if (typeof searchTool !== 'undefined') {
+        data = data.filter((d) => d.sort1 === searchTool)
+      } else if (typeof keySearch !== 'undefined') {
+        data = data.filter(
+          (d) =>
+            d.title.includes(keySearch) ||
+            d.sort1.includes(keySearch) ||
+            d.sucForTool.includes(keySearch)
+        )
       }
       setProducts(data)
     })
     return () => unsub()
-  }, [searchSuc,searchForest,searchTool])
+  }, [searchSuc, searchForest, searchTool, keySearch])
 
   // 商品排列順序
   products.sort((a, b) => {

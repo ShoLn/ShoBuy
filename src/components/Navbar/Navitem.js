@@ -9,17 +9,17 @@ export default function Navitem({ item }) {
   const navigate = useNavigate()
 
   return (
-    <div className='nav-item'>
+    <div className='nav_item'>
       <div className='main'>
         {item[0]}
-        <img src={arrowDown} className='arrow-down' />
+        <img src={arrowDown} className='arrow_down' />
       </div>
-      <div className='drop-down'>
+      <div className='drop_down'>
         {item.slice(1).map((element, index) => {
           return (
             <div key={index}>
               <div
-                className='drop-item'
+                className='drop_item'
                 onClick={(e) => {
                   if (item[0] === '多肉植物') {
                     navigate(`/searchSuc/${element}`)

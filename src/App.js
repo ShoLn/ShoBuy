@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.scss'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
@@ -20,19 +20,24 @@ import Checkout from './pages/CheckoutPage/Checkout'
 
 export default function App() {
   const { authIsReady, user } = useAuthContext()
-
- 
+  const [openSearch, setOpenSearch] = useState(false)
 
   return (
-    <div>
+    <div
+      className='APP_JS'
+      onClick={(e) => {
+        setOpenSearch(false)
+      }}
+    >
       {authIsReady && (
         <BrowserRouter>
-          <Navbar />
+          <Navbar openSearch={openSearch} setOpenSearch={setOpenSearch} />
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/searchSuc/:searchSuc' element={<Home />} />
             <Route path='/searchforest/:searchForest' element={<Home />} />
             <Route path='/searchTool/:searchTool' element={<Home />} />
+            <Route path='/keySearch/:keySearch' element={<Home />} />
             <Route
               path='/Login'
               element={user ? <Navigate to='/member' /> : <Login />}

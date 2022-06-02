@@ -1,6 +1,6 @@
 @import '../../scss/export';
 
-.nav-item {
+.nav_item {
   margin: 0 10px;
   position: relative;
   .main {
@@ -15,20 +15,19 @@
       opacity: 0.5;
       transition: all 0.3s;
     }
-    &:hover + .drop-down {
+    &:hover + .drop_down {
       max-height: 500px;
       border-bottom: 1px solid black;
     }
-    &:hover .arrow-down {
+    &:hover .arrow_down {
       transform: rotate(180deg);
     }
-    img.arrow-down {
-      margin-left: 2px;
+    img.arrow_down {
       width: 10px;
       height: 10px;
     }
   }
-  .drop-down {
+  .drop_down {
     position: absolute;
     overflow: hidden;
     max-height: 0;
@@ -44,7 +43,7 @@
       max-height: 500px;
       border-bottom: 1px solid black;
     }
-    .drop-item {
+    .drop_item {
       padding: 10px 15px;
       cursor: pointer;
       font-size: 1rem;
