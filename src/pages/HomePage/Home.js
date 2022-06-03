@@ -32,16 +32,13 @@ export default function Home() {
         data = data.filter((d) => d.sort1 === searchTool)
       } else if (typeof keySearch !== 'undefined') {
         data = data.filter(
-          (d) =>
-            d.title.includes(keySearch) ||
-            d.sort1.includes(keySearch) ||
-            d.sucForTool.includes(keySearch)
+          (d) => d.title.includes(keySearch) || d.sort1.includes(keySearch) || d.sucForTool.includes
         )
       }
       setProducts(data)
     })
     return () => unsub()
-  }, [searchSuc, searchForest, searchTool, keySearch])
+  }, [searchSuc, searchForest, searchTool,keySearch])
 
   // 商品排列順序
   products.sort((a, b) => {

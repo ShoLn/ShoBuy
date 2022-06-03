@@ -1,4 +1,5 @@
-$mainwidth: 380px;
+@import '../../scss/export';
+$mainwidth: 350px;
 $mainwidth_big: 50vw;
 
 .product_slider {
@@ -9,12 +10,18 @@ $mainwidth_big: 50vw;
     flex-direction: column;
     position: relative;
     width: $mainwidth;
+    @include phone {
+      width: 300px;
+    }
     // left button
     .slick-prev {
       z-index: 1;
       left: 5px;
       top: $mainwidth/2;
       transform: translateY(-50%);
+      @include phone {
+        top: 150px;
+      }
     }
     // right button
     .slick-next {
@@ -22,6 +29,9 @@ $mainwidth_big: 50vw;
       right: 5px;
       top: $mainwidth/2;
       transform: translateY(-50%);
+      @include phone {
+        top: 150px;
+      }
     }
     // main img
     img {
@@ -29,22 +39,39 @@ $mainwidth_big: 50vw;
       height: $mainwidth;
       object-fit: cover;
       cursor: zoom-in;
+      @include phone {
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+      }
     }
     // below image
     ul {
       position: relative;
       top: 0;
       text-align: start;
+      @include phone {
+        display: flex;
+        justify-content: space-around;
+      }
       li {
         width: $mainwidth/3;
         height: $mainwidth/3;
         margin: 0;
         opacity: 0.8;
         text-align: center;
+        @include phone {
+          width: 100px;
+          height: 100px;
+        }
         img {
           width: ($mainwidth/3)-2;
           height: ($mainwidth/3)-2;
           cursor: pointer;
+          @include phone {
+            width: 98px;
+            height: 98px;
+          }
         }
       }
       .slick-active {

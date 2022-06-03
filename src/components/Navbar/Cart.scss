@@ -6,6 +6,7 @@
   height: 100vh;
   top: 0;
   right: -100vw;
+  z-index: 20;
   background-color: rgba($color: #474747, $alpha: 0.6);
   .cart_background {
     overflow: scroll;
@@ -20,6 +21,9 @@
     align-items: center;
     overscroll-behavior: contain;
     z-index: 100;
+    @include pad {
+      width: 100vw;
+    }
     .close {
       width: 25px;
       height: 25px;

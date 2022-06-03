@@ -23,5 +23,8 @@
     margin: 10px auto;
     display: flex;
     flex-wrap: wrap;
+    @include product {
+      justify-content: space-around;
+    }
   }
 }

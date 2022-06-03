@@ -135,6 +135,7 @@ export default function Cart({ setIsCartOpen, isCartOpen }) {
         />
         <div className='cart_title'>購 物 車</div>
         <hr />
+        {/* 單個商品 */}
         {products &&
           products.map((product) => (
             <CartItem
@@ -146,6 +147,7 @@ export default function Cart({ setIsCartOpen, isCartOpen }) {
             />
           ))}
         <hr />
+        {/* 總金額 */}
         {products && (
           <div className='total'>
             總金額：NT$ {new Intl.NumberFormat('en-US').format(total)}

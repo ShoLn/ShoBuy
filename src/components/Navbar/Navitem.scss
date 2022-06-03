@@ -39,6 +39,12 @@
     transition: all 0.25s;
     z-index: 1000;
     background-color: #ffff;
+    @include pad {
+      position: relative;
+      overflow: auto;
+      max-height: 500px;
+      border: none;
+    }
     &:hover {
       max-height: 500px;
       border-bottom: 1px solid black;

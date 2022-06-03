@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 // img
 import arrowDown from '../../icon/arrow_down.png'
 
-export default function Navitem({ item }) {
+export default function Navitem({ item,setOpenHam }) {
   const navigate = useNavigate()
 
   return (
@@ -21,6 +21,7 @@ export default function Navitem({ item }) {
               <div
                 className='drop_item'
                 onClick={(e) => {
+                  setOpenHam(false)
                   if (item[0] === '多肉植物') {
                     navigate(`/searchSuc/${element}`)
                   } else if (item[0] === '雨林植物') {

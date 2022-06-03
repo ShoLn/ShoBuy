@@ -2,11 +2,14 @@
 
 .Product {
   max-width: 900px;
-  // border: 1px solid red;
-  margin: 30px auto;
+  margin: 60px auto;
   .product_container {
     display: flex;
     justify-content: space-evenly;
+    @include pad {
+      flex-direction: column;
+      align-items: center;
+    }
   }
   div.middle {
     left: 23px;
@@ -14,6 +17,9 @@
     height: 1.2px ;
     background-color: black;
     margin-top: 15px;
+    @include pad {
+      width: 90%;
+    }
   }
   .big_img_container {
     max-width: 900px;

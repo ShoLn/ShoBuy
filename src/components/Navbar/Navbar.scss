@@ -12,13 +12,22 @@
     align-items: center;
     max-width: $width1;
     margin: 0 auto;
+
     // 展開input
     @keyframes search_input {
       0% {
         width: 0;
       }
       100% {
-        width: 150px;
+        width: 200px;
+      }
+    }
+    @keyframes search_input_pad {
+      0% {
+        width: 0;
+      }
+      100% {
+        width: 100%;
       }
     }
     input.mag {
@@ -29,52 +38,102 @@
       border: none;
       width: 0px;
       font-size: 1rem;
-      z-index: 5;
+      z-index: 11;
+      display: none;
       &:focus {
         outline: none;
       }
+      @include pad {
+        right: 0px;
+      }
     }
     input.open_search {
+      display: block;
       animation: search_input 0.5s ease;
-      width: 150px;
-      border-bottom: 1px solid black;
-    }
-    // 左半部
-    div.left {
       width: 200px;
-      margin-left: 10px;
+      border-bottom: 1px solid black;
+      @include pad {
+        width: 100%;
+        animation: search_input_pad 0.5s ease;
+      }
+    }
+    // 漢堡
+    .hamber {
+      width: 30px;
+      height: 30px;
+      left: 10px;
+      display: none;
+      @include pad {
+        display: block;
+        top: 65px;
+      }
+    }
+    // 左半部LOGO
+    .left {
+      position: absolute;
+      z-index: 10;
+      left: 10px;
       .logo {
         letter-spacing: 0px;
         padding: 5px 0;
         display: flex;
         justify-content: center;
+        align-items: center;
         width: 140px;
+        height: 50px;
         background-color: black;
         color: #ffff;
         cursor: pointer;
-        font-size: 2.5rem;
+        font-size: 2em;
         font-weight: 900;
-        font-family: 'Times New Roman', Times, serif;
         font-style: italic;
+        @include pad {
+          width: 100px;
+          font-size: 1.3em;
+        }
         &:hover {
           opacity: 0.5;
         }
       }
     }
+    // 下拉選單
     .nav {
       display: flex;
       justify-content: center;
       flex: auto;
       height: 100%;
+      @keyframes ham_animation {
+        0% {
+          transform: translateX(-100vw);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+      @include pad {
+        overflow: scroll;
+        position: absolute;
+        left: -100vw;
+        top: 120px;
+        height: auto;
+        width: 100vw;
+        flex-direction: column;
+        background-color: rgba($color: #ffffff, $alpha: 1);
+        border-top: 1px solid black;
+      }
+    }
+    .open_ham{
+      animation: ham_animation 1s ease;
+      left: 0;
     }
 
     // 右半部
     div.right {
+      position: absolute;
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      width: 200px;
-      margin-right: 10px;
+      right: 10px;
       height: 100%;
       // 搜尋商品
       .search {

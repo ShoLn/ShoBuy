@@ -13,6 +13,7 @@ import Cart from './Cart'
 import magnifier from '../../icon/magnifier.png'
 import member from '../../icon/member.png'
 import cart from '../../icon/cart.png'
+import hamber from '../../icon/hamber.png'
 
 export default function Navbar({ openSearch, setOpenSearch }) {
   const [item1, setItem1] = useState([
@@ -50,6 +51,7 @@ export default function Navbar({ openSearch, setOpenSearch }) {
   const [buyNum, setBuyNum] = useState('')
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [keySearch, setKeySearch] = useState('')
+  const [openHam, setOpenHam] = useState(false)
   const navigate = useNavigate()
 
   const { user } = useAuthContext()
@@ -101,16 +103,15 @@ export default function Navbar({ openSearch, setOpenSearch }) {
           }}
         />
         {/* 左半部 */}
-        <div className='left'>
-          <Link to='/' title='返回首頁'>
-            <div className='logo'>ShoBuy</div>
-          </Link>
-        </div>
+        <img src={hamber} className='hamber' onClick={e=>{setOpenHam(!openHam)}} />
+        <Link to='/' title='返回首頁' className='left'>
+          <div className='logo'>ShoBuy</div>
+        </Link>
         {/* 下拉選單 */}
-        <div className='nav'>
-          <Navitem item={item1} />
-          <Navitem item={item2} />
-          <Navitem item={item3} />
+        <div className={`nav ${openHam ? 'open_ham' : ''}`}>
+          <Navitem item={item1} setOpenHam={setOpenHam}/>
+          <Navitem item={item2} setOpenHam={setOpenHam}/>
+          <Navitem item={item3} setOpenHam={setOpenHam}/>
         </div>
         {/* 右半部 */}
         <div className='right'>
