@@ -83,8 +83,6 @@ export default function Order() {
     setReget(!reget)
   }
 
-  
-
   return (
     <div className='order'>
       {/* 上方選單 */}
@@ -180,14 +178,16 @@ export default function Order() {
                       'en-US'
                     ).format(order.total)}`}</div>
                   </div>
-                  <div
-                    className='move_to_next'
-                    onClick={(e) => {
-                      handleToAlreadySend(order.oid)
-                    }}
-                  >
-                    確 認 出 貨
-                  </div>
+                  {isManager && (
+                    <div
+                      className='move_to_next'
+                      onClick={(e) => {
+                        handleToAlreadySend(order.oid)
+                      }}
+                    >
+                      確 認 出 貨
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
