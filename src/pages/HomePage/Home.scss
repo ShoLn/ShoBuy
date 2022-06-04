@@ -14,6 +14,9 @@
     text-align: center;
     border: 1px solid rgba($color: #636363, $alpha: 1);
     color: #636363;
+    @include pad {
+      margin-top: 5px;
+    }
     &:focus {
       outline: none;
     }

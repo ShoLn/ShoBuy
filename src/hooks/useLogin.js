@@ -23,7 +23,11 @@ export const useLogin = () => {
 
       // update Authcontext state with member collection data
       const data = await dbGet('members', res.user.uid)
-      dispatch({ type: 'LOGIN', payload: data })
+      if (data.email === 'managershobuy@gmail.com') {
+        dispatch({ type: 'MANAGER', payload: data })
+      } else {
+        dispatch({ type: 'LOGIN', payload: data })
+      }
 
       //update state
       setIsPending(false)

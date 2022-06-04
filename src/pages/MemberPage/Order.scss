@@ -1,8 +1,14 @@
+@import '../../scss/export';
+
 .order {
   display: flex;
   flex-direction: column;
   flex: auto;
   background-color: rgba($color: #edecec, $alpha: 1);
+  @include pad {
+    flex: none;
+    width: 95%;
+  }
   // 上方選單
   .delever_type {
     display: flex;

@@ -3,6 +3,9 @@
 .nav_item {
   margin: 0 10px;
   position: relative;
+  @include pad {
+    top: 30px
+  }
   .main {
     letter-spacing: 3px;
     display: flex;
@@ -11,6 +14,9 @@
     height: 100%;
     font-weight: bolder;
     cursor: pointer;
+   @include pad {
+     height: 50px;
+   }
     &:hover {
       opacity: 0.5;
       transition: all 0.3s;

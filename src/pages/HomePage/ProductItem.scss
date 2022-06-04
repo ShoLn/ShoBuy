@@ -3,7 +3,16 @@ $item_margin_lr: 10px;
 .product_item {
   margin: 20px $item_margin_lr;
 
-  img {
+  img.trash_can {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: -10px;
+    right: -10px;
+    z-index: 10;
+    cursor: pointer;
+  }
+  img.product_item_img {
     width: 335px - (2 * $item_margin_lr);
     height: 335px - (2 * $item_margin_lr);
     object-fit: cover;
@@ -22,4 +31,38 @@ $item_margin_lr: 10px;
     font-size: 0.8rem;
     margin-top: 5px;
   }
+  // 確認刪除商品 跳出視窗
+  .delete_popout {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($color: #c4c3c3, $alpha: 0.9);
+    display: flex;
+    justify-content: center;
+    z-index: 11;
+    div {
+      margin-top: 150px;
+      width: 300px;
+      height: 130px;
+      background-color: #ffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      border: 2px solid black;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      button {
+        width: 30%;
+        height: 30px;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+    }
+  }
+  
+  
 }

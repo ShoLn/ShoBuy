@@ -4,6 +4,10 @@ div.member {
   display: flex;
   max-width: 800px;
   margin: 30px auto;
+  @include pad {
+    flex-direction: column;
+    align-items: center;
+  }
   // 左半部會員資料
   .member_info {
     width: 350px;
@@ -13,6 +17,10 @@ div.member {
     position: relative;
     background-color: rgba($color: #d9d9d9, $alpha: 1);
     padding: 20px 0;
+    @include pad {
+      width: 95%;
+      margin-bottom: 20px;
+    }
     .pen {
       position: absolute;
       top: 20px;

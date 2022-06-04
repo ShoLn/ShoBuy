@@ -65,7 +65,7 @@
       display: none;
       @include pad {
         display: block;
-        top: 65px;
+        top: 50px;
       }
     }
     // 左半部LOGO
@@ -111,10 +111,9 @@
         }
       }
       @include pad {
-        overflow: scroll;
         position: absolute;
         left: -100vw;
-        top: 120px;
+        top: 100px;
         height: auto;
         width: 100vw;
         flex-direction: column;
@@ -122,11 +121,12 @@
         border-top: 1px solid black;
       }
     }
-    .open_ham{
+    .open_ham {
+      overflow: scroll;
+      height: 1053px;
       animation: ham_animation 1s ease;
       left: 0;
     }
-
     // 右半部
     div.right {
       position: absolute;
@@ -169,6 +169,22 @@
           }
         }
       }
+      // 新增商品功能
+      a {
+        display: flex;
+        align-items: center;
+        height: 60px;
+        .add_product {
+          width: 30px;
+          height: 30px;
+          margin-right: 20px;
+          cursor: pointer;
+          &:hover {
+            opacity: 0.5;
+          }
+        }
+      }
+      // 購物車功能
       .cart_icon_container {
         position: relative;
         .cart_icon {

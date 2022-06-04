@@ -19,7 +19,7 @@ import Product from './pages/ProductPage/Product'
 import Checkout from './pages/CheckoutPage/Checkout'
 
 export default function App() {
-  const { authIsReady, user } = useAuthContext()
+  const { authIsReady, user, isManager } = useAuthContext()
   const [openSearch, setOpenSearch] = useState(false)
 
   return (
@@ -50,7 +50,7 @@ export default function App() {
               path='/Member'
               element={!user ? <Navigate to='/Login' /> : <Member />}
             />
-            <Route path='/Seller' element={<Seller />} />
+            <Route path='/Seller' element={!isManager ? <Navigate to='/' /> : <Seller />} />
             <Route path='/Product/:productId' element={<Product />} />
             <Route path='/Checkout' element={<Checkout />} />
           </Routes>

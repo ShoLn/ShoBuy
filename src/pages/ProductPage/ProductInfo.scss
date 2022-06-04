@@ -1,15 +1,23 @@
+@import '../../scss/export';
 $title_weight: 500;
 $title_size: 1.1em;
 
 .product_info {
   margin: 0 50px;
   max-width: 350px;
+  @include phone {
+    margin: 20px 0 0 0;
+    max-width: 290px;
+  }
   // 標題
   .title {
     font-size: 2em;
     font-weight: bolder;
     left: -20px;
     top: -8px;
+    @include phone {
+      font-size: 1.6em;
+    }
   }
   //  價格
   .price {

@@ -70,3 +70,4 @@ export default function ProductSlider({ imgUrls }) {
     </div>
   )
 }
+

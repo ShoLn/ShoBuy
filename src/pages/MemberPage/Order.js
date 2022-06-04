@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Order.scss'
 import { useAuthContext } from '../../hooks/useAuthContext'
-import { db,timestamp } from '../../firebase/config'
+import { db, timestamp } from '../../firebase/config'
 
 //img
 import deliver from '../../icon/deliver.png'
@@ -10,23 +10,33 @@ export default function Order() {
   const [needSend, setNeedSend] = useState(true)
   const [alreadySend, setAlreadySend] = useState(false)
   const [done, setDone] = useState(false)
-  const { user } = useAuthContext()
+  const { user, isManager } = useAuthContext()
   const [orders, setOrders] = useState([])
   const [reget, setReget] = useState(false)
 
   // 獲取該會員所有訂單資料
   useEffect(() => {
     let orders = []
-    db.collection('orders')
-      .where('uid', '==', user.uid)
-      .get()
-      .then((docs) => {
-        docs.forEach((doc) => {
-          orders.push(doc.data())
+    if (isManager) {
+      db.collection('orders')
+        .get()
+        .then((docs) => {
+          docs.forEach((doc) => {
+            orders.push(doc.data())
+          })
+          setOrders(orders)
         })
-        setOrders(orders)
-      })
-
+    } else {
+      db.collection('orders')
+        .where('uid', '==', user.uid)
+        .get()
+        .then((docs) => {
+          docs.forEach((doc) => {
+            orders.push(doc.data())
+          })
+          setOrders(orders)
+        })
+    }
   }, [reget])
 
   // 訂單按建立日期排序
@@ -59,6 +69,21 @@ export default function Order() {
       })
     setReget(!reget)
   }
+
+  // 未出貨到已出貨
+  const handleToAlreadySend = async (oid) => {
+    await db
+      .collection('orders')
+      .doc(oid)
+      .update({
+        order_date: timestamp.fromDate(new Date()),
+        isSend: true,
+        done: false
+      })
+    setReget(!reget)
+  }
+
+  
 
   return (
     <div className='order'>
@@ -155,6 +180,14 @@ export default function Order() {
                       'en-US'
                     ).format(order.total)}`}</div>
                   </div>
+                  <div
+                    className='move_to_next'
+                    onClick={(e) => {
+                      handleToAlreadySend(order.oid)
+                    }}
+                  >
+                    確 認 出 貨
+                  </div>
                 </div>
               </div>
             ))}
@@ -227,7 +260,7 @@ export default function Order() {
                 </div>
               </div>
             ))}
-        {/* 已出貨 */}
+        {/* 已完成 */}
         {done &&
           orders
             .filter((order) => order.done === true)

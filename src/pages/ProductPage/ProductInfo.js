@@ -8,7 +8,7 @@ export default function ProductInfo({ productData }) {
   const [buyNumber, setBuyNumber] = useState(1)
   const { user } = useAuthContext()
   const navigate = useNavigate()
-
+  
   const handleAddToCart = async (e) => {
     e.preventDefault()
     if (user === null) {

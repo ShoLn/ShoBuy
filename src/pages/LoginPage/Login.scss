@@ -10,12 +10,15 @@
   .account-login {
     font-weight: 900;
     font-size: 2rem;
-    margin: 40px 0;
+    margin: 60px 0;
   }
   form {
     display: flex;
     flex-direction: column;
     width: 60%;
+    @include phone {
+      width: 90%;
+    }
     input {
       margin-bottom: 25px;
       height: 40px;
@@ -70,7 +73,7 @@
     background-color: rgba($color: #a3a1a1, $alpha: 0.5);
     .fp-form {
       max-width: 350px;
-      margin: 80px auto;
+      margin: 120px auto;
       background-color: #ffff;
       border: 2px solid black;
       border-radius: 5px;

@@ -9,9 +9,18 @@ const authReducer = (state, action) => {
     case 'LOGIN':
       return { ...state, user: action.payload }
     case 'LOGOUT':
-      return { ...state, user: null }
+      return { ...state, user: null, isManager: false }
     case 'AUTH_IS_READY':
       return { ...state, user: action.payload, authIsReady: true }
+    case 'AUTH_READY_MANAGER':
+      return {
+        ...state,
+        user: action.payload,
+        authIsReady: true,
+        isManager: true
+      }
+    case 'MANAGER':
+      return { ...state, user: action.payload, isManager: true }
     default:
       return state
   }
@@ -21,7 +30,8 @@ export const AuthContextProvider = ({ children }) => {
   // create global state of auth
   const [state, dispatch] = useReducer(authReducer, {
     user: null,
-    authIsReady: false
+    authIsReady: false,
+    isManager: false
   })
 
   // update auth state while first render
@@ -34,7 +44,12 @@ export const AuthContextProvider = ({ children }) => {
           .doc(user.uid)
           .get()
           .then((doc) => {
-            dispatch({ type: 'AUTH_IS_READY', payload: doc.data() })
+            console.log(doc.data())
+            if (doc.data().email === 'managershobuy@gmail.com') {
+              dispatch({ type: 'AUTH_READY_MANAGER', payload: doc.data() })
+            } else {
+              dispatch({ type: 'AUTH_IS_READY', payload: doc.data() })
+            }
           })
       }
       unsub()

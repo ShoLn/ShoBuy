@@ -14,6 +14,7 @@ import magnifier from '../../icon/magnifier.png'
 import member from '../../icon/member.png'
 import cart from '../../icon/cart.png'
 import hamber from '../../icon/hamber.png'
+import add_product from '../../icon/add_product.png'
 
 export default function Navbar({ openSearch, setOpenSearch }) {
   const [item1, setItem1] = useState([
@@ -54,7 +55,7 @@ export default function Navbar({ openSearch, setOpenSearch }) {
   const [openHam, setOpenHam] = useState(false)
   const navigate = useNavigate()
 
-  const { user } = useAuthContext()
+  const { user, isManager } = useAuthContext()
   const { logout } = useLogout()
 
   useEffect(() => {
@@ -103,15 +104,21 @@ export default function Navbar({ openSearch, setOpenSearch }) {
           }}
         />
         {/* 左半部 */}
-        <img src={hamber} className='hamber' onClick={e=>{setOpenHam(!openHam)}} />
+        <img
+          src={hamber}
+          className='hamber'
+          onClick={(e) => {
+            setOpenHam(!openHam)
+          }}
+        />
         <Link to='/' title='返回首頁' className='left'>
           <div className='logo'>ShoBuy</div>
         </Link>
         {/* 下拉選單 */}
         <div className={`nav ${openHam ? 'open_ham' : ''}`}>
-          <Navitem item={item1} setOpenHam={setOpenHam}/>
-          <Navitem item={item2} setOpenHam={setOpenHam}/>
-          <Navitem item={item3} setOpenHam={setOpenHam}/>
+          <Navitem item={item1} setOpenHam={setOpenHam} />
+          <Navitem item={item2} setOpenHam={setOpenHam} />
+          <Navitem item={item3} setOpenHam={setOpenHam} />
         </div>
         {/* 右半部 */}
         <div className='right'>
@@ -140,21 +147,29 @@ export default function Navbar({ openSearch, setOpenSearch }) {
           <Link to='/Login'>
             <img src={member} className='member' title='會員頁面' />
           </Link>
+          {/* 新增商品 */}
+          {isManager && (
+            <Link to='/Seller'>
+              <img src={add_product} className='add_product' title='新增商品' />
+            </Link>
+          )}
           {/* 購物車 */}
-          <div
-            className='cart_icon_container'
-            onClick={(e) => {
-              setIsCartOpen(true)
-            }}
-          >
+          {!isManager && (
             <div
-              className='cart_number'
-              style={{ opacity: buyNum ? '1' : '0' }}
+              className='cart_icon_container'
+              onClick={(e) => {
+                setIsCartOpen(true)
+              }}
             >
-              {buyNum}
+              <div
+                className='cart_number'
+                style={{ opacity: buyNum ? '1' : '0' }}
+              >
+                {buyNum}
+              </div>
+              <img src={cart} className='cart_icon' title='購物車' />
             </div>
-            <img src={cart} className='cart_icon' title='購物車' />
-          </div>
+          )}
           {/* 登出功能 */}
           {user && (
             <div

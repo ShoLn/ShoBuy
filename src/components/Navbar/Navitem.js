@@ -1,6 +1,5 @@
 import React from 'react'
 import './Navitem.scss'
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 // img
 import arrowDown from '../../icon/arrow_down.png'
