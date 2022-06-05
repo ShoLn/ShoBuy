@@ -17,7 +17,7 @@ export default function ProductItem({ product }) {
     await dbDelete('products',productId)
     setOpenDelete(false)
   }
-
+  
   return (
     <div className='product_item'>
       {isManager && (

@@ -49,7 +49,7 @@
       font-size: 1.5em;
       color: rgba($color: #667874, $alpha: 1);
       font-weight: bolder;
-      margin-bottom: 20px;
+      margin-bottom: 5px;
     }
     .checkout {
       display: flex;
@@ -62,9 +62,42 @@
       color: #ffff;
       font-size: 1.5rem;
       font-weight: bolder;
+      margin: 20px 0;
       cursor: pointer;
       &:hover {
         opacity: 0.7;
+      }
+    }
+  }
+  // 確認刪除商品 跳出視窗
+  .delete_popout {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($color: #c4c3c3, $alpha: 0.9);
+    display: flex;
+    justify-content: center;
+    z-index: 110;
+    div {
+      margin-top: 150px;
+      width: 300px;
+      height: 130px;
+      background-color: #ffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      border: 2px solid black;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      button {
+        width: 30%;
+        height: 30px;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
       }
     }
   }

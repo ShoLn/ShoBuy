@@ -24,6 +24,7 @@ export default function Seller() {
   const [imgFiles, setImgFiles] = useState('')
   const [isPending, setIsPending] = useState(false)
   const [finishedUpload, setFinishedUpload] = useState(false)
+  const [imgLessTwo, setImgLessTwo] = useState(false)
 
   const suc = [
     '景天',
@@ -97,47 +98,53 @@ export default function Seller() {
   // 上架商品 submit 事件
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setIsPending(true)
-    const productId = uuidv4()
-    const creatAt = timestamp.fromDate(new Date())
-    let imgUrls = []
-    const storageUpload = async (imgFile, index) => {
-      const uploadPath = `products/${sucForTool}/${sort1}/${size}/${productId}/${index}`
-      const ImgStorage = await storage.ref(uploadPath).put(imgFile.file)
-      const ImgStorageUrl = await ImgStorage.ref.getDownloadURL()
-      imgUrls.push(ImgStorageUrl)
+    if (imgFiles.length < 2) {
+      setFinishedUpload(true)
+      setImgLessTwo(true)
+      return
+    } else {
+      setIsPending(true)
+      const productId = uuidv4()
+      const creatAt = timestamp.fromDate(new Date())
+      let imgUrls = []
+      const storageUpload = async (imgFile, index) => {
+        const uploadPath = `products/${sucForTool}/${sort1}/${size}/${productId}/${index}`
+        const ImgStorage = await storage.ref(uploadPath).put(imgFile.file)
+        const ImgStorageUrl = await ImgStorage.ref.getDownloadURL()
+        imgUrls.push(ImgStorageUrl)
+      }
+
+      for (let i = 0; i < imgFiles.length; i++) {
+        await storageUpload(imgFiles[i], i)
+      }
+
+      const doc = {
+        creatAt,
+        productId,
+        title,
+        sucForTool,
+        sort1,
+        size,
+        price,
+        productNumber,
+        imgUrls,
+        description
+      }
+      await dbSet('products', productId, doc)
+      setIsPending(false)
+
+      // 清空表格
+      setTitle('')
+      setSucForTool('default')
+      setSort1('default')
+      setSize('default')
+      setPrice('')
+      setProductNumber(0)
+      setDiscription('')
+      setImgFiles('')
+
+      setFinishedUpload(true)
     }
-
-    for (let i = 0; i < imgFiles.length; i++) {
-      await storageUpload(imgFiles[i], i)
-    }
-
-    const doc = {
-      creatAt,
-      productId,
-      title,
-      sucForTool,
-      sort1,
-      size,
-      price,
-      productNumber,
-      imgUrls,
-      description
-    }
-    await dbSet('products', productId, doc)
-    setIsPending(false)
-
-    // 清空表格
-    setTitle('')
-    setSucForTool('default')
-    setSort1('default')
-    setSize('default')
-    setPrice('')
-    setProductNumber(0)
-    setDiscription('')
-    setImgFiles('')
-
-    setFinishedUpload(true)
   }
 
   return (
@@ -286,9 +293,10 @@ export default function Seller() {
               <option value='default' disabled>
                 請選擇盆栽大小
               </option>
-              <option value='小'>小</option>
-              <option value='中'>中</option>
-              <option value='大'>大</option>
+              <option value='3'>3吋</option>
+              <option value='4'>4吋</option>
+              <option value='5'>5吋</option>
+              <option value='6'>6吋</option>
             </select>
             <img src={arrow_down} />
           </div>
@@ -357,7 +365,11 @@ export default function Seller() {
       {!isPending && <button>上 架 商 品</button>}
       {isPending && <button>商 品 上 架 中....</button>}
       {finishedUpload && (
-        <Popout setFinishedUpload={setFinishedUpload} message='商品上架成功' />
+        <Popout
+          setFinishedUpload={setFinishedUpload}
+          setImgLessTwo={setImgLessTwo}
+          imgLessTwo={imgLessTwo}
+        />
       )}
     </form>
   )

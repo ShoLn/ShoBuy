@@ -8,7 +8,7 @@ export default function ProductInfo({ productData }) {
   const [buyNumber, setBuyNumber] = useState(1)
   const { user } = useAuthContext()
   const navigate = useNavigate()
-  
+
   const handleAddToCart = async (e) => {
     e.preventDefault()
     if (user === null) {
@@ -51,7 +51,11 @@ export default function ProductInfo({ productData }) {
           剩最後 <span>{productData.productNumber}</span> 件
         </div>
       </div>
-      <button>加 入 購 物 車</button>
+      {productData.productNumber === 0 ? (
+        <button disabled>商 品 已 完 售</button>
+      ) : (
+        <button>加 入 購 物 車</button>
+      )}
       <hr />
       <div className='description_container'>
         <div className='description'>{productData.description}</div>

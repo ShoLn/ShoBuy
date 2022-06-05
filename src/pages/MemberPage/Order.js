@@ -164,9 +164,11 @@ export default function Order() {
                       </div>
                       <div className='number'>
                         <div className='buy_number'>{`x ${product.buyNumber}`}</div>
-                        <div className='price'>{`$ ${new Intl.NumberFormat(
-                          'en-US'
-                        ).format(product.price)}`}</div>
+                        <div className='price'>
+                          {`$ ${new Intl.NumberFormat('en-US').format(
+                            product.price
+                          )}`}
+                        </div>
                       </div>
                       <hr />
                     </div>

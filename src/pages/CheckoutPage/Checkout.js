@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import './Checkout.scss'
-import { db, timestamp } from '../../firebase/config'
+import { db, timestamp, FieldValue } from '../../firebase/config'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { stores } from '../../711/711Store'
 import { v4 as uuidv4 } from 'uuid'
 import { useFirestore } from '../../hooks/useFirestore'
 import { useNavigate } from 'react-router-dom'
-
 
 //imgs
 import seven_logo from '../../icon/seven_logo.png'
@@ -21,9 +20,10 @@ export default function Checkout() {
     total: 0
   })
   const [isPending, setIsPending] = useState(false)
-  const { dbSet, dbDelete } = useFirestore()
+  const { dbSet, dbDelete, dbUpdate } = useFirestore()
   const navigate = useNavigate()
 
+  console.log(checkoutObj.products)
 
   // 從checkout 資料庫抓取資料
   useEffect(() => {
@@ -47,17 +47,25 @@ export default function Checkout() {
       uid: user.uid,
       oid,
       products: checkoutObj.products,
-      total:checkoutObj.total,
+      total: checkoutObj.total,
       order_date: timestamp.fromDate(new Date()),
       name,
       phone,
-      store: `7-11 ${storeState}門市 店號：${stores.filter((store) => store.店名 === storeState)[0]['店號']}`,
+      store: `7-11 ${storeState}門市 店號：${
+        stores.filter((store) => store.店名 === storeState)[0]['店號']
+      }`,
       isSend: false,
       done: false
     }
     await dbSet('orders', oid, doc)
-    await dbDelete('carts',user.uid)
-    await dbDelete('checkout',user.uid)
+    await dbDelete('carts', user.uid)
+    await dbDelete('checkout', user.uid)
+    
+    for (let p of checkoutObj.products) {
+      await dbUpdate('products', p.productId, {
+        productNumber: FieldValue.increment(-p.buyNumber)
+      })
+    }
     setIsPending(false)
     navigate('/member')
   }

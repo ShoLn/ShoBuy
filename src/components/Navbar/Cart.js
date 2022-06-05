@@ -14,11 +14,34 @@ export default function Cart({ setIsCartOpen, isCartOpen }) {
   const { user } = useAuthContext()
   const [products, setProducts] = useState([])
   const [total, setTotal] = useState('')
+  const [notEnoughProducts, setNotEnoughProducts] = useState('')
   const navigate = useNavigate()
 
+  console.log(products)
   // 前往結賬
   const handleCheckout = async (e) => {
     e.preventDefault()
+    // 前往提交訂單頁面前檢查是否有商品同時被其他買家買走導致數量不夠
+    let enough = []
+    let temProducts = products
+    for (let i = 0; i < temProducts.length; i++) {
+      await db
+        .collection('products')
+        .doc(temProducts[i].productId)
+        .get()
+        .then((doc) => {
+          if (doc.data().productNumber < temProducts[i].buyNumber) {
+            enough.push(temProducts[i].title)
+            temProducts[i].productNumber = doc.data().productNumber
+          }
+        })
+    }
+    if (enough.length) {
+      setProducts(temProducts)
+      setNotEnoughProducts(enough)
+      return
+    }
+    // 確認商品數量都足夠 建立訂單
     await db.collection('checkout').doc(user.uid).set({ products, total })
     setIsCartOpen(false)
     navigate('/Checkout')
@@ -89,6 +112,7 @@ export default function Cart({ setIsCartOpen, isCartOpen }) {
 
   // 從資料庫拿購物車資料
   useEffect(() => {
+    console.log('effffff')
     if (user === null) {
       setProducts([])
       setTotal('')
@@ -155,6 +179,26 @@ export default function Cart({ setIsCartOpen, isCartOpen }) {
         )}
         <button className='checkout'>前 往 結 賬</button>
       </form>
+      {/* 商品數量不足跳出視窗 */}
+      {notEnoughProducts && (
+        <div
+          className='delete_popout'
+          onClick={(e) => {
+            setNotEnoughProducts('')
+          }}
+        >
+          <div>
+            {`抱歉！ 商品 ${notEnoughProducts.join(' ')} 數量不足`}
+            <button
+              onClick={(e) => {
+                setNotEnoughProducts('')
+              }}
+            >
+              確認
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

@@ -15,23 +15,26 @@ export default function Product() {
 
   // get product data by productId
   useEffect(() => {
-    db.collection('products')
+    const unsub = db.collection('products')
       .doc(productId)
-      .get()
-      .then((snapShot) => {
+      .onSnapshot((snapShot) => {
         setProductData(snapShot.data())
       })
+    return ()=>{unsub()}
   }, [])
 
   return (
     <div className='Product'>
       <div className='product_container'>
         <ProductSlider imgUrls={productData.imgUrls} />
-        <ProductInfo productData={productData}/>
+        <ProductInfo productData={productData} />
       </div>
-      <div className='middle'/>
-      <div className="big_img_container">
-        {productData && productData.imgUrls.map((imgurl,index)=>(<img src={imgurl} key={index} />))}
+      <div className='middle' />
+      <div className='big_img_container'>
+        {productData &&
+          productData.imgUrls.map((imgurl, index) => (
+            <img src={imgurl} key={index} />
+          ))}
       </div>
     </div>
   )
