@@ -103,14 +103,7 @@ export default function Navbar({ openSearch, setOpenSearch }) {
             }
           }}
         />
-        {/* 左半部 */}
-        <img
-          src={hamber}
-          className='hamber'
-          onClick={(e) => {
-            setOpenHam(!openHam)
-          }}
-        />
+        
         <Link to='/' title='返回首頁' className='left'>
           <div className='logo'>ShoBuy</div>
         </Link>
@@ -122,6 +115,14 @@ export default function Navbar({ openSearch, setOpenSearch }) {
         </div>
         {/* 右半部 */}
         <div className='right'>
+          {/* 漢堡 */}
+        <img
+          src={hamber}
+          className='hamber'
+          onClick={(e) => {
+            setOpenHam(!openHam)
+          }}
+        />
           {/* 搜尋商品 */}
           <div className='search'>
             <img
