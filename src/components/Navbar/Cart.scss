@@ -69,8 +69,8 @@
       }
     }
   }
-  // 確認刪除商品 跳出視窗
-  .delete_popout {
+  // 商品數量不足跳出視窗 跳出視窗
+  .delete_popout_cart {
     position: fixed;
     top: 0;
     left: 0;
@@ -97,7 +97,13 @@
         height: 30px;
         border-radius: 5px;
         font-size: 1rem;
+        border: none;
+        background-color: black;
+        color: #ffff;
         cursor: pointer;
+        &:hover {
+          opacity: 0.6;
+        }
       }
     }
   }

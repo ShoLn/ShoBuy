@@ -183,7 +183,7 @@ export default function Cart({ setIsCartOpen, isCartOpen }) {
       {/* 商品數量不足跳出視窗 */}
       {notEnoughProducts && (
         <div
-          className='delete_popout'
+          className='delete_popout_cart'
           onClick={(e) => {
             setNotEnoughProducts('')
           }}

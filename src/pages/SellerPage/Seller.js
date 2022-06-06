@@ -369,6 +369,7 @@ export default function Seller() {
           setFinishedUpload={setFinishedUpload}
           setImgLessTwo={setImgLessTwo}
           imgLessTwo={imgLessTwo}
+          message={'商品上架成功'}
         />
       )}
     </form>
