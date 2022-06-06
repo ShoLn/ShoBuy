@@ -44,7 +44,6 @@ export const AuthContextProvider = ({ children }) => {
           .doc(user.uid)
           .get()
           .then((doc) => {
-            console.log(doc.data())
             if (doc.data().email === 'managershobuy@gmail.com') {
               dispatch({ type: 'AUTH_READY_MANAGER', payload: doc.data() })
             } else {
@@ -55,8 +54,6 @@ export const AuthContextProvider = ({ children }) => {
       unsub()
     })
   }, [])
-
-  console.log('!!!!', state)
 
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>

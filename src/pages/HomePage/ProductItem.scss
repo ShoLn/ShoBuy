@@ -12,6 +12,24 @@ $item_margin_lr: 10px;
     z-index: 10;
     cursor: pointer;
   }
+  // 商品售完圖片 
+  div.sold_out{
+    position: absolute;
+    width: 335px - (2 * $item_margin_lr);
+    height: 335px - (2 * $item_margin_lr);
+    background-color: rgba($color: #464646, $alpha: 0.8);
+    z-index: 10;
+    img.sold_out{
+      width: 40%;
+      height: 40%;
+      opacity: 0.8;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+  }
+  
+  // 商品首頁圖片
   img.product_item_img {
     width: 335px - (2 * $item_margin_lr);
     height: 335px - (2 * $item_margin_lr);

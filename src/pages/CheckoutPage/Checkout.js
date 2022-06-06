@@ -23,8 +23,6 @@ export default function Checkout() {
   const { dbSet, dbDelete, dbUpdate } = useFirestore()
   const navigate = useNavigate()
 
-  console.log(checkoutObj.products)
-
   // 從checkout 資料庫抓取資料
   useEffect(() => {
     const unsub = db
@@ -41,33 +39,38 @@ export default function Checkout() {
   // 提交訂單
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setIsPending(true)
-    let oid = uuidv4()
-    const doc = {
-      uid: user.uid,
-      oid,
-      products: checkoutObj.products,
-      total: checkoutObj.total,
-      order_date: timestamp.fromDate(new Date()),
-      name,
-      phone,
-      store: `7-11 ${storeState}門市 店號：${
-        stores.filter((store) => store.店名 === storeState)[0]['店號']
-      }`,
-      isSend: false,
-      done: false
+    if (checkoutObj.products.length === 0) {
+      navigate('/')
+      return
+    } else {
+      setIsPending(true)
+      let oid = uuidv4()
+      const doc = {
+        uid: user.uid,
+        oid,
+        products: checkoutObj.products,
+        total: checkoutObj.total,
+        order_date: timestamp.fromDate(new Date()),
+        name,
+        phone,
+        store: `7-11 ${storeState}門市 店號：${
+          stores.filter((store) => store.店名 === storeState)[0]['店號']
+        }`,
+        isSend: false,
+        done: false
+      }
+      await dbSet('orders', oid, doc)
+      await dbDelete('carts', user.uid)
+      await dbDelete('checkout', user.uid)
+
+      for (let p of checkoutObj.products) {
+        await dbUpdate('products', p.productId, {
+          productNumber: FieldValue.increment(-p.buyNumber)
+        })
+      }
+      setIsPending(false)
+      navigate('/member')
     }
-    await dbSet('orders', oid, doc)
-    await dbDelete('carts', user.uid)
-    await dbDelete('checkout', user.uid)
-    
-    for (let p of checkoutObj.products) {
-      await dbUpdate('products', p.productId, {
-        productNumber: FieldValue.increment(-p.buyNumber)
-      })
-    }
-    setIsPending(false)
-    navigate('/member')
   }
 
   return (

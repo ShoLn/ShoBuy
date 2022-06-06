@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './ProductItem.scss'
 import { Link } from 'react-router-dom'
 import { useAuthContext } from '../../hooks/useAuthContext'
@@ -6,18 +6,29 @@ import { useFirestore } from '../../hooks/useFirestore'
 
 // image
 import red_trash from '../../icon/red_trash.png'
+import sold_out from '../../icon/sold_out.png'
 
 export default function ProductItem({ product }) {
   const [isMouseOver, setIsMouseOver] = useState(false)
   const { isManager } = useAuthContext()
   const [openDelete, setOpenDelete] = useState(false)
-  const {dbDelete} = useFirestore()
+  const { dbDelete } = useFirestore()
+  const [soldOut, setSoldOut] = useState(false)
+  
+  useEffect(() => {
+    if (product.productNumber === 0) {
+      setSoldOut(true)
+    }else{
+      setSoldOut(false)
+    }
+  }, [product.productNumber])
 
-  const confirmDelete = async (productId) =>{
-    await dbDelete('products',productId)
+  // 刪除商品
+  const confirmDelete = async (productId) => {
+    await dbDelete('products', productId)
     setOpenDelete(false)
   }
-  
+
   return (
     <div className='product_item'>
       {isManager && (
@@ -30,6 +41,11 @@ export default function ProductItem({ product }) {
         />
       )}
       <Link to={`/Product/${product.productId}`}>
+        {soldOut && (
+          <div className='sold_out'>
+            <img src={sold_out} className='sold_out' />
+          </div>
+        )}
         <img
           className='product_item_img'
           src={isMouseOver ? product.imgUrls[1] : product.imgUrls[0]}
@@ -50,10 +66,21 @@ export default function ProductItem({ product }) {
       </div>
       {/* 確認刪除商品 跳出視窗 */}
       {openDelete && (
-        <div className='delete_popout' onClick={(e) => {setOpenDelete(false)}}>
+        <div
+          className='delete_popout'
+          onClick={(e) => {
+            setOpenDelete(false)
+          }}
+        >
           <div>
             是否確認要刪除商品
-            <button onClick={(e) => {confirmDelete(product.productId)}}>確認</button>
+            <button
+              onClick={(e) => {
+                confirmDelete(product.productId)
+              }}
+            >
+              確認
+            </button>
           </div>
         </div>
       )}

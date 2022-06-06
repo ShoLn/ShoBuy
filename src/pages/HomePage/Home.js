@@ -15,6 +15,7 @@ export default function Home() {
   const { searchForest } = useParams()
   const { searchTool } = useParams()
   const { keySearch } = useParams()
+  
 
   // 從firestore抓取所有商品資料
   useEffect(() => {
@@ -63,25 +64,36 @@ export default function Home() {
 
   return (
     <div className='home'>
-      {/* 商品排序邏輯 */}
-      <select
-        value={sortType}
-        onChange={(e) => {
-          setSortType(e.target.value)
-        }}
-      >
-        <option value='latest'>上架時間新到舊</option>
-        <option value='oldest'>上架時間舊到新</option>
-        <option value='priceHighest'>價格高到低</option>
-        <option value='priceLowest'>價格低到高</option>
-      </select>
+      {products.length ? (
+        <div className='heve'>
+          {/* 商品排序邏輯 */}
+          <select
+            value={sortType}
+            onChange={(e) => {
+              setSortType(e.target.value)
+            }}
+          >
+            <option value='latest'>上架時間新到舊</option>
+            <option value='oldest'>上架時間舊到新</option>
+            <option value='priceHighest'>價格高到低</option>
+            <option value='priceLowest'>價格低到高</option>
+          </select>
 
-      {/* 商品container */}
-      <div className='product_container'>
-        {products.map((product) => (
-          <ProductItem product={product} key={product.productId} />
-        ))}
-      </div>
+          {/* 商品container */}
+          <div className='product_container'>
+            {products.map((product) => (
+              <ProductItem product={product} key={product.productId} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className='none'>
+          {searchSuc && `抱歉！  ${searchSuc} 之商品已售完並下架`}
+          {searchForest && `抱歉！  ${searchForest} 之商品已售完並下架`}
+          {searchTool && `抱歉！  ${searchTool} 之商品已售完並下架`}
+          {keySearch && `抱歉！  找不到與 ${keySearch} 相關之商品`}
+        </div>
+      )}
     </div>
   )
 }

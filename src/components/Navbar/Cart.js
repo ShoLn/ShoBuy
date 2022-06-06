@@ -16,8 +16,6 @@ export default function Cart({ setIsCartOpen, isCartOpen }) {
   const [total, setTotal] = useState('')
   const [notEnoughProducts, setNotEnoughProducts] = useState('')
   const navigate = useNavigate()
-
-  console.log(products)
   // 前往結賬
   const handleCheckout = async (e) => {
     e.preventDefault()
@@ -39,6 +37,10 @@ export default function Cart({ setIsCartOpen, isCartOpen }) {
     if (enough.length) {
       setProducts(temProducts)
       setNotEnoughProducts(enough)
+      return
+    }
+    //若都沒商品不做任何動作 
+    if(temProducts.length === 0) {
       return
     }
     // 確認商品數量都足夠 建立訂單
@@ -112,7 +114,6 @@ export default function Cart({ setIsCartOpen, isCartOpen }) {
 
   // 從資料庫拿購物車資料
   useEffect(() => {
-    console.log('effffff')
     if (user === null) {
       setProducts([])
       setTotal('')

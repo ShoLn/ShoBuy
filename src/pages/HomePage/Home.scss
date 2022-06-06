@@ -5,6 +5,15 @@
   flex-direction: column;
   max-width: $width1;
   margin: auto;
+  // 搜尋不到商品
+  .none{
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    font-size: 2em;
+    left: 10px;
+    font-weight: bolder;
+  }
   select {
     height: 30px;
     width: 150px;
