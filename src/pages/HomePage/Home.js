@@ -65,7 +65,7 @@ export default function Home() {
   return (
     <div className='home'>
       {products.length ? (
-        <div className='heve'>
+        <div className='have'>
           {/* 商品排序邏輯 */}
           <select
             value={sortType}

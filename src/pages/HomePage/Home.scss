@@ -6,7 +6,7 @@
   max-width: $width1;
   margin: auto;
   // 搜尋不到商品
-  .none{
+  .none {
     display: flex;
     justify-content: center;
     margin-top: 60px;
@@ -14,29 +14,35 @@
     left: 10px;
     font-weight: bolder;
   }
-  select {
-    height: 30px;
-    width: 150px;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: 10px;
-    text-align: center;
-    border: 1px solid rgba($color: #636363, $alpha: 1);
-    color: #636363;
-    @include pad {
-      margin-top: 5px;
-    }
-    &:focus {
-      outline: none;
-    }
-  }
-  .product_container {
-    max-width: $width1;
-    margin: 10px auto;
+  .have {
     display: flex;
-    flex-wrap: wrap;
-    @include product {
-      justify-content: space-around;
+    flex-direction: column;
+    max-width: $width1;
+    margin: auto;
+    select {
+      height: 30px;
+      width: 150px;
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: 10px;
+      text-align: center;
+      border: 1px solid rgba($color: #636363, $alpha: 1);
+      color: #636363;
+      @include pad {
+        margin-top: 5px;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+    .product_container {
+      max-width: $width1;
+      margin: 10px auto;
+      display: flex;
+      flex-wrap: wrap;
+      @include product {
+        justify-content: space-around;
+      }
     }
   }
 }
