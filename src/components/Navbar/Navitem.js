@@ -4,12 +4,17 @@ import { useNavigate } from 'react-router-dom'
 // img
 import arrowDown from '../../icon/arrow_down.png'
 
-export default function Navitem({ item,setOpenHam }) {
+export default function Navitem({ item, setOpenHam }) {
   const navigate = useNavigate()
 
   return (
     <div className='nav_item'>
-      <div className='main'>
+      <div
+        className='main'
+        onClick={(e) => {
+          navigate(`/keySearch/${item[0]}`)
+        }}
+      >
         {item[0]}
         <img src={arrowDown} className='arrow_down' />
       </div>

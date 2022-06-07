@@ -3,26 +3,24 @@
 .nav_item {
   margin: 0 10px;
   position: relative;
-  @include pad {
-    top: 30px
-  }
+  // suc forest tool
   .main {
     letter-spacing: 3px;
     display: flex;
     align-items: center;
-    font-size: 1.3rem;
+    font-size: 1.3em;
     height: 100%;
     font-weight: bolder;
     cursor: pointer;
-   @include pad {
-     height: 50px;
-   }
+    @include pad {
+      height: 50px;
+    }
     &:hover {
       opacity: 0.5;
       transition: all 0.3s;
     }
     &:hover + .drop_down {
-      max-height: 500px;
+      max-height: 1000px;
       border-bottom: 1px solid black;
     }
     &:hover .arrow_down {
@@ -33,6 +31,7 @@
       height: 10px;
     }
   }
+  // 每個分類的細項
   .drop_down {
     position: absolute;
     overflow: hidden;
@@ -45,15 +44,14 @@
     transition: all 0.25s;
     z-index: 1000;
     background-color: #ffff;
+    &:hover {
+      max-height: 1000px;
+      border-bottom: 1px solid black;
+    }
     @include pad {
       position: relative;
-      overflow: auto;
-      max-height: 500px;
+      max-height: 1000px;
       border: none;
-    }
-    &:hover {
-      max-height: 500px;
-      border-bottom: 1px solid black;
     }
     .drop_item {
       padding: 10px 15px;
