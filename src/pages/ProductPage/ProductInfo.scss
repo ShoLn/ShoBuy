@@ -5,9 +5,13 @@ $title_size: 1.1em;
 .product_info {
   margin: 0 50px;
   max-width: 350px;
-  @include phone {
+  @include pad {
     margin: 20px 0 0 0;
-    max-width: 290px;
+    max-width: none;
+    width: 350px;
+  }
+  @include phone {
+    width: 300px;
   }
   // 標題
   .title {
@@ -16,6 +20,7 @@ $title_size: 1.1em;
     left: -20px;
     top: -8px;
     @include phone {
+      left: -15px;
       font-size: 1.6em;
     }
   }
@@ -54,51 +59,14 @@ $title_size: 1.1em;
       font-size: $title_size;
       font-weight: $title_weight;
     }
-    .left {
-      border-radius: 5px 0 0 5px;
-      line-height: 30px;
-    }
-    .right {
-      border-radius: 0 5px 5px 0;
-      line-height: 29px;
-    }
-    span {
-      flex: none;
-      width: 30px;
-      height: 30px;
-      text-align: center;
-
-      background-color: rgba($color: #1f1f1f, $alpha: 1);
-      color: #ffff;
-      cursor: pointer;
-      &:hover {
-        opacity: 0.6;
-      }
-    }
-    input {
-      border-radius: 0;
-      text-align: center;
-      width: 40px;
-      height: 30px;
-      border: none;
-      border-top: 1px solid black;
-      border-bottom: 1px solid black;
-      margin: 0;
-      font-size: 1.1em;
-    }
-    input::-webkit-inner-spin-button,
-    input::-webkit-outer-spin-button {
-      appearance: none;
-    }
     .last_number {
-      margin-left: 10px;
-      font-size: 1em;
       font-weight: normal;
       color: rgba($color: #656565, $alpha: 1);
       span {
         background-color: transparent;
         color: rgba($color: #b10b0b, $alpha: 0.8);
         font-weight: $title_weight;
+        font-size: 1.1em;
       }
     }
   }

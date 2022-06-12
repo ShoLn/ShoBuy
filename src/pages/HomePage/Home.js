@@ -72,18 +72,19 @@ export default function Home() {
       {products.length ? (
         <div className='have'>
           {/* 商品排序邏輯 */}
-          <select
-            value={sortType}
-            onChange={(e) => {
-              setSortType(e.target.value)
-            }}
-          >
-            <option value='latest'>上架時間新到舊</option>
-            <option value='oldest'>上架時間舊到新</option>
-            <option value='priceHighest'>價格高到低</option>
-            <option value='priceLowest'>價格低到高</option>
-          </select>
-
+          <div className='select_container'>
+            <select
+              value={sortType}
+              onChange={(e) => {
+                setSortType(e.target.value)
+              }}
+            >
+              <option value='latest'>上架時間新到舊</option>
+              <option value='oldest'>上架時間舊到新</option>
+              <option value='priceHighest'>價格高到低</option>
+              <option value='priceLowest'>價格低到高</option>
+            </select>
+          </div>
           {/* 商品container */}
           <div className='products_container'>
             {products.map((product) => (

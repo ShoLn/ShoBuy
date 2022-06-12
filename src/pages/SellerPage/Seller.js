@@ -99,8 +99,9 @@ export default function Seller() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (imgFiles.length < 2) {
-      setFinishedUpload(true)
-      setImgLessTwo(true)
+      // setFinishedUpload(true)
+      // setImgLessTwo(true)
+      alert('至少上傳兩張圖片')
       return
     } else {
       setIsPending(true)
@@ -289,16 +290,16 @@ export default function Seller() {
             <select
               value={size}
               onChange={(e) => {
-                setSize(e.target.value)
+                setSize(parseInt(e.target.value, 10))
               }}
             >
               <option value='default' disabled>
                 請選擇盆栽大小
               </option>
-              <option value='3吋'>3吋</option>
-              <option value='4吋'>4吋</option>
-              <option value='5吋'>5吋</option>
-              <option value='6吋'>6吋</option>
+              <option value='3'>3吋</option>
+              <option value='4'>4吋</option>
+              <option value='5'>5吋</option>
+              <option value='6'>6吋</option>
             </select>
             <img src={arrow_down} />
           </div>

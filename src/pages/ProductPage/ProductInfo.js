@@ -41,12 +41,12 @@ export default function ProductInfo({ productData }) {
       </div>
       {/* 商品尺寸 */}
       <div className='size_container'>
-        <div className='size1'>商品尺寸：</div>
-        <div className='size'>{productData.size}</div>
+        <div className='size1'>商品尺寸： </div>
+        <div className='size'>{productData.size}吋</div>
       </div>
       {/* 商品購買數量 */}
       <div className='buy_number'>
-        <div>商品數量：</div>
+        <div>商品數量： </div>
         <div className='last_number'>
           剩最後 <span>{productData.productNumber}</span> 件
         </div>

@@ -10,8 +10,8 @@ import x_icon from '../../icon/x.png'
 import email_icon from '../../icon/email.png'
 
 export default function Login() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('test666@gmail.com')
+  const [password, setPassword] = useState('test666')
   const { login, error, isPending } = useLogin()
   //forget password state
   const [isForgetPass, setIsForgetPass] = useState(false)
