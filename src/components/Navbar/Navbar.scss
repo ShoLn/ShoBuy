@@ -13,56 +13,11 @@
     justify-content: center;
     max-width: $width1;
     margin: 0 auto;
-    // 展開input
-    @keyframes search_input {
-      0% {
-        width: 0;
-      }
-      100% {
-        width: 200px;
-      }
-    }
-    @keyframes search_input_pad {
-      0% {
-        width: 0;
-      }
-      100% {
-        width: 100%;
-      }
-    }
-    input.mag {
-      position: absolute;
-      padding: 0 10px;
-      right: 200px;
-      height: 60px;
-      border: none;
-      width: 0px;
-      font-size: 1rem;
-      z-index: 11;
-      display: none;
-      &:focus {
-        outline: none;
-      }
-      @include pad {
-        right: 0px;
-      }
-    }
-    input.open_search {
-      display: block;
-      animation: search_input 0.5s ease;
-      width: 200px;
-      border-bottom: 1px solid black;
-      @include pad {
-        width: 100%;
-        animation: search_input_pad 0.5s ease;
-      }
-    }
     // 漢堡
     .hamber {
       width: 25px;
       height: 25px;
       position: relative;
-      margin-right: 10px;
       display: none;
       @include pad {
         display: block;
@@ -140,20 +95,63 @@
         position: relative;
         display: flex;
         align-items: center;
+        // 展開input
+        @keyframes search_input {
+          0% {
+            width: 0;
+          }
+          100% {
+            width: 200px;
+          }
+        }
+        @keyframes search_input_pad {
+          0% {
+            width: 0;
+          }
+          100% {
+            width: 100%;
+          }
+        }
+        input.mag {
+          padding: 0 10px;
+          height: 60px;
+          border: none;
+          width: 0px;
+          font-size: 1rem;
+          z-index: 11;
+          display: none;
+          &:focus {
+            outline: none;
+          }
+          @include pad {
+            position: fixed;
+            right: 0px;
+          }
+        }
+        input.open_search {
+          display: block;
+          animation: search_input 0.5s ease;
+          width: 200px;
+          border-bottom: 1px solid black;
+          @include pad {
+            width: 100%;
+            animation: search_input_pad 0.5s ease;
+          }
+        }
+        // 放大鏡icon
         .magnifier {
           width: 25px;
           height: 25px;
-          margin-right: 20px;
-          margin-left: 10px;
+          margin-left: 20px;
           cursor: pointer;
-          @include pad {
-            margin-right: 15px;
-          }
           &:hover {
             opacity: 0.5;
           }
           &:focus ~ .mag {
             border: none;
+          }
+          @include phone {
+            margin-left: 15px;
           }
         }
       }
@@ -165,13 +163,13 @@
         .member {
           width: 23px;
           height: 23px;
-          margin-right: 20px;
+          margin-left: 20px;
           cursor: pointer;
-          @include pad {
-            margin-right: 15px;
-          }
           &:hover {
             opacity: 0.5;
+          }
+          @include phone {
+            margin-left: 15px;
           }
         }
       }
@@ -183,10 +181,13 @@
         .add_product {
           width: 30px;
           height: 30px;
-          margin-right: 20px;
+          margin-left: 20px;
           cursor: pointer;
           &:hover {
             opacity: 0.5;
+          }
+          @include phone {
+            margin-left: 15px;
           }
         }
       }
@@ -196,14 +197,14 @@
         .cart_icon {
           width: 30px;
           height: 30px;
-          margin-right: 20px;
           margin-top: 5px;
+          margin-left: 20px;
           cursor: pointer;
-          @include pad {
-            margin-right: 15px;
-          }
           &:hover {
             opacity: 0.5;
+          }
+          @include phone {
+            margin-left: 15px;
           }
         }
         .cart_number {
@@ -217,18 +218,22 @@
           justify-content: center;
           align-items: center;
           top: -8px;
-          right: 10px;
+          right: -10px;
         }
       }
 
       .logout {
-        border: 1px solid black;
+        border: 1.5px solid black;
         padding: 2px;
         border-radius: 5px;
+        margin-left: 20px;
         &:hover {
           background-color: black;
           color: #ffff;
           cursor: pointer;
+        }
+        @include phone {
+          margin-left: 15px;
         }
       }
     }

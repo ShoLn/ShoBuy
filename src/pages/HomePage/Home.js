@@ -43,7 +43,6 @@ export default function Home() {
     return () => unsub()
   }, [searchSuc, searchForest, searchTool, keySearch])
 
-  console.log(products)
   // 商品排列順序
   products.sort((a, b) => {
     switch (sortType) {

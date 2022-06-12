@@ -24,6 +24,12 @@ $width1: 1340px;
   }
 }
 
+@mixin rwd1000 {
+  @media (max-width: 1000px) {
+    @content;
+  }
+}
+
 // color
 
 $color1: rgb(87, 87, 87);

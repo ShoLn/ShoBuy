@@ -79,31 +79,12 @@ export default function Navbar({ openSearch, setOpenSearch }) {
 
   return (
     <div className='Navbar'>
-      <div className='nav-container'>
-        {/* 展開input */}
-        <input
-          className={`mag ${openSearch ? 'open_search' : ''}`}
-          type='text'
-          placeholder='請輸入欲搜尋項目'
-          value={keySearch}
-          onChange={(e) => {
-            setKeySearch(e.target.value)
-          }}
-          onClick={(e) => {
-            e.stopPropagation()
-          }}
-          onKeyPress={(e) => {
-            if (e.key === 'Enter') {
-              if (keySearch === '') {
-                return
-              } else {
-                setOpenSearch(false)
-                navigate(`/keySearch/${keySearch}`)
-              }
-            }
-          }}
-        />
-        
+      <div
+        className='nav-container'
+        onClick={(e) => {
+          setOpenHam(false)
+        }}
+      >
         <Link to='/' title='返回首頁' className='left'>
           <div className='logo'>ShoBuy</div>
         </Link>
@@ -116,28 +97,56 @@ export default function Navbar({ openSearch, setOpenSearch }) {
         {/* 右半部 */}
         <div className='right'>
           {/* 漢堡 */}
-        <img
-          src={hamber}
-          className='hamber'
-          onClick={(e) => {
-            setOpenHam(!openHam)
-          }}
-        />
+          <img
+            src={hamber}
+            className='hamber'
+            onClick={(e) => {
+              e.stopPropagation()
+              setOpenHam(!openHam)
+            }}
+          />
           {/* 搜尋商品 */}
           <div className='search'>
+            {/* 展開input */}
+            <input
+              className={`mag ${openSearch ? 'open_search' : ''}`}
+              type='text'
+              placeholder='請輸入欲搜尋項目'
+              value={keySearch}
+              onChange={(e) => {
+                setKeySearch(e.target.value)
+              }}
+              onClick={(e) => {
+                e.stopPropagation()
+              }}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') {
+                  if (keySearch === '') {
+                    return
+                  } else {
+                    setOpenSearch(false)
+                    setKeySearch('')
+                    navigate(`/keySearch/${keySearch}`)
+                  }
+                }
+              }}
+            />
+            {/* 放大鏡icon */}
             <img
               src={magnifier}
               className='magnifier'
               title='搜尋商品'
               onClick={(e) => {
                 e.stopPropagation()
+                setOpenHam(false)
                 if (openSearch === true) {
                   if (keySearch === '') {
                     return
                   } else {
-                    setOpenSearch(false)
+                    setKeySearch('')
                     navigate(`/keySearch/${keySearch}`)
                   }
+                  setOpenSearch(false)
                 } else {
                   setOpenSearch(true)
                 }

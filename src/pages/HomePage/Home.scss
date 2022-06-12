@@ -49,8 +49,12 @@
       margin: 10px auto;
       display: flex;
       flex-wrap: wrap;
-      @include product {
-        justify-content: space-around;
+      justify-content: space-between;
+      @include rwd1000 {
+        justify-content: space-evenly;
+      }
+      @include phone {
+        justify-content: space-between;
       }
     }
   }
