@@ -13,6 +13,9 @@
     font-size: 2em;
     left: 10px;
     font-weight: bolder;
+    @include phone {
+      font-size: 1em;
+    }
   }
   .have {
     display: flex;
@@ -20,22 +23,28 @@
     max-width: $width1;
     margin: auto;
     select {
-      height: 30px;
-      width: 150px;
+      height: 40px;
+      width: 200px;
       margin-top: 20px;
       margin-left: auto;
       margin-right: 10px;
+      font-size: 1.1em;
       text-align: center;
-      border: 1px solid rgba($color: #636363, $alpha: 1);
-      color: #636363;
+      color: rgba($color: #383838, $alpha: 1);
+      border: 1.5px solid black;
       @include pad {
         margin-top: 5px;
+      }
+      @include phone {
+        height: 30px;
+        width: 150px;
+        font-size: 0.8em;
       }
       &:focus {
         outline: none;
       }
     }
-    .product_container {
+    .products_container {
       max-width: $width1;
       margin: 10px auto;
       display: flex;

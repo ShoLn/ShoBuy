@@ -23,7 +23,7 @@ export const useSignup = () => {
 
       // create user document in firestore member collection
       await dbSet('members', res.user.uid, {
-        cart:[],
+        cart: [],
         uid: res.user.uid,
         displayName,
         email,
@@ -36,7 +36,7 @@ export const useSignup = () => {
       dispatch({
         type: 'LOGIN',
         payload: {
-          cart:[],
+          cart: [],
           uid: res.user.uid,
           displayName,
           address,
@@ -51,7 +51,7 @@ export const useSignup = () => {
       setIsPending(false)
     } catch (err) {
       console.log(err)
-      setError(err.message)
+      setError(err.code)
       setIsPending(false)
     }
   }

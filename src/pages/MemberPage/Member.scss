@@ -2,7 +2,7 @@
 
 div.member {
   display: flex;
-  max-width: 800px;
+  max-width: 1335px;
   margin: 30px auto;
   @include pad {
     flex-direction: column;
@@ -10,13 +10,15 @@ div.member {
   }
   // 左半部會員資料
   .member_info {
-    width: 350px;
+    width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
-    background-color: rgba($color: #d9d9d9, $alpha: 1);
+    background-color: rgba($color: #f1f1f1, $alpha: 1);
     padding: 20px 0;
+    border: 1.5px solid black;
+    border-radius: 5px 0 0 5px;
     @include pad {
       width: 95%;
       margin-bottom: 20px;
@@ -25,8 +27,8 @@ div.member {
       position: absolute;
       top: 20px;
       right: 20px;
-      width: 20px;
-      height: 20px;
+      width: 25px;
+      height: 25px;
       cursor: pointer;
       &:hover {
         opacity: 0.6;

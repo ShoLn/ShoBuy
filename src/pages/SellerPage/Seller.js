@@ -60,6 +60,7 @@ export default function Seller() {
 
   const { dbSet } = useFirestore()
 
+
   // 照片 CHANGE 事件
   const handleChange = (e) => {
     console.log(e)
@@ -71,7 +72,6 @@ export default function Seller() {
       files = files.map((file) => {
         return { file, fid: uuidv4(), viewUrl: URL.createObjectURL(file) }
       })
-
       setImgFiles((prevImgFiles) => [...prevImgFiles, ...files])
     }
   }
@@ -141,6 +141,9 @@ export default function Seller() {
       setPrice('')
       setProductNumber(0)
       setDiscription('')
+      imgFiles.forEach((file) => {
+        URL.revokeObjectURL(file.viewUrl)
+      })
       setImgFiles('')
 
       setFinishedUpload(true)
@@ -214,7 +217,6 @@ export default function Seller() {
               setTitle(e.target.value)
             }}
           />
-
           {/* 多肉或雨林或工具 */}
           <div className='select_div'>
             <select
@@ -293,10 +295,10 @@ export default function Seller() {
               <option value='default' disabled>
                 請選擇盆栽大小
               </option>
-              <option value='3'>3吋</option>
-              <option value='4'>4吋</option>
-              <option value='5'>5吋</option>
-              <option value='6'>6吋</option>
+              <option value='3吋'>3吋</option>
+              <option value='4吋'>4吋</option>
+              <option value='5吋'>5吋</option>
+              <option value='6吋'>6吋</option>
             </select>
             <img src={arrow_down} />
           </div>

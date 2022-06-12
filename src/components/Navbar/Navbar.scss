@@ -1,7 +1,7 @@
 @import '../../scss/export';
 
 .Navbar {
-  border-bottom: 1px solid black;
+  border-bottom: 1.5px solid black;
   position: sticky;
   top: 0;
   z-index: 9999;
@@ -12,6 +12,7 @@
     align-items: center;
     justify-content: center;
     max-width: $width1;
+    margin: 0 auto;
     // 展開input
     @keyframes search_input {
       0% {

@@ -33,7 +33,7 @@ export const useLogin = () => {
       setIsPending(false)
     } catch (err) {
       console.log(err)
-      setError(err.message)
+      setError(err.code)
       setIsPending(false)
     }
   }

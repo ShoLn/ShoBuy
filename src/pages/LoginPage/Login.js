@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import './Login.scss'
 import { Link } from 'react-router-dom'
@@ -18,7 +18,18 @@ export default function Login() {
   const [resetEmail, setRestEmail] = useState('')
   const [emailSendResult, setEmailSendResult] = useState('')
   const [isEmailPending, setIsEmailPending] = useState(false)
+  const [wrongEmail, setWrongEmail] = useState('')
+  const [wrongPassword, setWrongPassword] = useState('')
 
+  useEffect(() => {
+    if (error === 'auth/user-not-found') {
+      setEmail('')
+      setWrongEmail('信箱 輸入錯誤')
+    } else if (error === 'auth/wrong-password') {
+      setPassword('')
+      setWrongPassword('密碼 輸入錯誤')
+    }
+  }, [error])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -47,8 +58,8 @@ export default function Login() {
       <form onSubmit={handleSubmit}>
         <input
           type='email'
-          className='email'
-          placeholder='請輸入電子信箱'
+          className={wrongEmail ? 'email wrong' : 'email'}
+          placeholder={wrongEmail ? wrongEmail : '請輸入信箱'}
           required
           value={email}
           onChange={(e) => {
@@ -57,8 +68,8 @@ export default function Login() {
         />
         <input
           type='password'
-          className='password'
-          placeholder='請輸入密碼'
+          className={wrongPassword ? 'password wrong' : 'password'}
+          placeholder={wrongPassword ? wrongPassword : '請輸入密碼'}
           required
           value={password}
           onChange={(e) => {
@@ -67,7 +78,6 @@ export default function Login() {
         />
         {!isPending && <button>登 入 帳 號</button>}
         {isPending && <button>登 入 中...</button>}
-        {error && <p>{error}</p>}
       </form>
       <Link to='/Signup' className='create-account'>
         創建會員帳號

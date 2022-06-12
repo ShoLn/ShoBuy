@@ -41,7 +41,7 @@ export default function Cart({ setIsCartOpen, isCartOpen }) {
     }
     //若都沒商品不做任何動作 
     if(temProducts.length === 0) {
-      return
+      setIsCartOpen(false)
     }
     // 確認商品數量都足夠 建立訂單
     await db.collection('checkout').doc(user.uid).set({ products, total })

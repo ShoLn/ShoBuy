@@ -1,4 +1,6 @@
+@import '../../scss/export';
 $item_margin_lr: 10px;
+$phone_pic_width: 41vw;
 
 .product_item {
   margin: 20px $item_margin_lr;
@@ -19,6 +21,10 @@ $item_margin_lr: 10px;
     height: 335px - (2 * $item_margin_lr);
     background-color: rgba($color: #464646, $alpha: 0.8);
     z-index: 10;
+    @include phone {
+      width: $phone_pic_width;
+      height: $phone_pic_width;
+    }
     img.sold_out {
       width: 40%;
       height: 40%;
@@ -34,19 +40,38 @@ $item_margin_lr: 10px;
     width: 335px - (2 * $item_margin_lr);
     height: 335px - (2 * $item_margin_lr);
     object-fit: cover;
+    @include phone {
+      width: $phone_pic_width;
+      height: $phone_pic_width;
+    }
   }
+  //第二張圖片
+  img.product_item_img_2 {
+    position: absolute;
+    left: 0;
+    width: 335px - (2 * $item_margin_lr);
+    height: 335px - (2 * $item_margin_lr);
+    object-fit: cover;
+    @include phone {
+      width: $phone_pic_width;
+      height: $phone_pic_width;
+    }
+  }
+  //產品名稱
   .title {
     font-weight: bolder;
+    font-size: 1.1em;
     color: black;
     &:hover {
       opacity: 0.6;
     }
   }
+
   .sucForTool_sort1 {
-    font-size: 0.8rem;
+    font-size: 0.9em;
   }
   .price {
-    font-size: 0.8rem;
+    font-size: 0.9em;
     margin-top: 5px;
   }
   // 確認刪除商品 跳出視窗
@@ -59,7 +84,7 @@ $item_margin_lr: 10px;
     background-color: rgba($color: #c4c3c3, $alpha: 0.9);
     display: flex;
     justify-content: center;
-    z-index: 11;
+    z-index: 12;
     div {
       margin-top: 150px;
       width: 300px;

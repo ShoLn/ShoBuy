@@ -87,7 +87,7 @@ $mainwidth_big: 50vw;
     height: 100vh;
     display: flex;
     justify-content: center;
-    background-color: rgba($color: #8c8c8c, $alpha: 0.5);
+    background-color: rgba($color: #000000, $alpha: 0.9);
     z-index: 10000;
     .slick-slider {
       display: flex;
@@ -96,6 +96,9 @@ $mainwidth_big: 50vw;
       width: $mainwidth_big;
       animation: 0.5s moveBig;
       top: 20px;
+      @include pad {
+        width: 95vw;
+      }
       @keyframes moveBig {
         0% {
           top: -50vw;
@@ -107,14 +110,14 @@ $mainwidth_big: 50vw;
       transition: transform 1s ease;
       // left button
       .slick-prev {
-        z-index: 1;
+        z-index: -11;
         left: 5px;
         top: $mainwidth_big/2;
         transform: translateY(-50%);
       }
       // right button
       .slick-next {
-        z-index: 1;
+        z-index: -11;
         right: 5px;
         top: $mainwidth_big/2;
         transform: translateY(-50%);
@@ -126,6 +129,10 @@ $mainwidth_big: 50vw;
         object-fit: cover;
         border: 1px solid white;
         cursor: grab;
+        @include pad {
+          width: 90vw;
+          height: 90vw;
+        }
       }
     }
   }

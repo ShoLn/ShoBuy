@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import React from 'react'
 import './Signup.scss'
 import { useSignup } from '../../hooks/useSignup'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 //signup components
 export default function Signup() {
@@ -13,9 +13,16 @@ export default function Signup() {
   const [address, setAddress] = useState('')
   const [phone, setPhone] = useState('')
   const [wrongPassword, setWrongPassword] = useState(false)
+  const [wrongEmail, setWrongEmail] = useState('')
 
   const { signup, error, isPending } = useSignup()
 
+  useEffect(() => {
+    if (error === 'auth/email-already-in-use') {
+      setWrongEmail('信箱已被使用')
+      setEmail('')
+    }
+  }, [error])
   const handleSubmit = (e) => {
     e.preventDefault()
     if (password === confirmPassword) {
@@ -48,13 +55,14 @@ export default function Signup() {
             type='email'
             required
             value={email}
+            placeholder={wrongEmail ? '信箱已被使用' : undefined}
             onChange={(e) => {
               setEmail(e.target.value)
             }}
           />
         </label>
         <label>
-          <span>密碼：</span>
+          <span>密碼(至少六位)：</span>
           <input
             type='password'
             required
@@ -77,34 +85,8 @@ export default function Signup() {
             placeholder={wrongPassword ? '請確認密碼輸入相同' : undefined}
           />
         </label>
-        <label>
-          <span>地址：</span>
-          <input
-            type='text'
-            required
-            value={address}
-            onChange={(e) => {
-              setAddress(e.target.value)
-            }}
-          />
-        </label>
-        <label>
-          <span>手機：</span>
-          <input
-            type='text'
-            minLength='10'
-            maxLength='10'
-            pattern='[0-9]+'
-            required
-            value={phone}
-            onChange={(e) => {
-              setPhone(e.target.value)
-            }}
-          />
-        </label>
         {!isPending && <button>建 立 帳 戶</button>}
         {isPending && <button disabled>建 立 中...</button>}
-        {error && <p>{error}</p>}
       </form>
       <Link to='/Login' className='link-to-login'>
         已經有會員帳號

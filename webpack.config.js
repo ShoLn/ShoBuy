@@ -7,7 +7,6 @@ module.exports = {
   // development production
   mode: 'development',
   entry: './src/index.js',
-
   devServer: {
     static: './dist'
   },

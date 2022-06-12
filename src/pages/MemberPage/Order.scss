@@ -5,6 +5,9 @@
   flex-direction: column;
   flex: auto;
   background-color: rgba($color: #edecec, $alpha: 1);
+  border: 1.5px solid black;
+  border-left: none;
+  border-radius: 0 5px 5px 0;
   @include pad {
     flex: none;
     width: 95%;
@@ -12,17 +15,22 @@
   // 上方選單
   .delever_type {
     display: flex;
-    height: 40px;
+    height: 50px;
     border-bottom: 1px solid rgba($color: #a9a8a8, $alpha: 1);
+    margin-bottom: 20px;
     .click_type {
       border-left: 1px solid rgba($color: #6e6c6c, $alpha: 1);
       box-shadow: 1px 1px 1px rgba($color: #6e6c6c, $alpha: 1);
+      background-color: black;
+      color: #ffff;
     }
     div {
       width: 33.333%;
+      font-weight: bolder;
       display: flex;
       justify-content: center;
       align-items: center;
+      border: 1px solid black;
       cursor: pointer;
     }
   }
@@ -39,7 +47,7 @@
       background-color: #ffffff;
       width: 90%;
       border-radius: 5px;
-      margin: 10px 0;
+      margin: 20px 0;
       padding: 5px;
       // 訂單編號
       .oid {

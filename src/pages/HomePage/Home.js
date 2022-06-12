@@ -15,7 +15,6 @@ export default function Home() {
   const { searchForest } = useParams()
   const { searchTool } = useParams()
   const { keySearch } = useParams()
-  
 
   // 從firestore抓取所有商品資料
   useEffect(() => {
@@ -44,6 +43,7 @@ export default function Home() {
     return () => unsub()
   }, [searchSuc, searchForest, searchTool, keySearch])
 
+  console.log(products)
   // 商品排列順序
   products.sort((a, b) => {
     switch (sortType) {
@@ -58,6 +58,12 @@ export default function Home() {
       }
       case 'priceLowest': {
         return a.price - b.price
+      }
+      case 'sizeSmallest': {
+        return a.size - b.size
+      }
+      case 'sizeBiggest': {
+        return b.size - a.size
       }
     }
   })
@@ -80,7 +86,7 @@ export default function Home() {
           </select>
 
           {/* 商品container */}
-          <div className='product_container'>
+          <div className='products_container'>
             {products.map((product) => (
               <ProductItem product={product} key={product.productId} />
             ))}

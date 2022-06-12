@@ -31,6 +31,10 @@
         background-color: rgba($color: #d4f3e9, $alpha: 0.3);
       }
     }
+    .wrong::placeholder {
+      color: red;
+      opacity: 0.8;
+    }
     button {
       height: 40px;
       border: 1px solid black;
