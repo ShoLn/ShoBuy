@@ -1,0 +1,139 @@
+@import '../../scss/export';
+$mainwidth: 350px;
+$mainwidth_big: 50vw;
+
+.product_slider {
+  // react slick
+  position: relative;
+  .slick-slider {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: $mainwidth;
+    @include phone {
+      width: 300px;
+    }
+    // left button
+    .slick-prev {
+      z-index: 1;
+      left: 5px;
+      top: $mainwidth/2;
+      transform: translateY(-50%);
+      @include phone {
+        top: 150px;
+      }
+    }
+    // right button
+    .slick-next {
+      z-index: 1;
+      right: 5px;
+      top: $mainwidth/2;
+      transform: translateY(-50%);
+      @include phone {
+        top: 150px;
+      }
+    }
+    // main img
+    img {
+      width: $mainwidth;
+      height: $mainwidth;
+      object-fit: cover;
+      cursor: zoom-in;
+      @include phone {
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+      }
+    }
+    // below image
+    ul {
+      position: relative;
+      top: 0;
+      text-align: start;
+      @include phone {
+        display: flex;
+        justify-content: space-around;
+      }
+      li {
+        width: $mainwidth/3;
+        height: $mainwidth/3;
+        margin: 0;
+        opacity: 0.8;
+        text-align: center;
+        @include phone {
+          width: 100px;
+          height: 100px;
+        }
+        img {
+          width: ($mainwidth/3)-2;
+          height: ($mainwidth/3)-2;
+          cursor: pointer;
+          @include phone {
+            width: 98px;
+            height: 98px;
+          }
+        }
+      }
+      .slick-active {
+        opacity: 1;
+      }
+    }
+  }
+  .big_pic_container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: rgba($color: #000000, $alpha: 0.9);
+    z-index: 10000;
+    .slick-slider {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: $mainwidth_big;
+      animation: 0.5s moveBig;
+      top: 20px;
+      @include pad {
+        width: 95vw;
+      }
+      @keyframes moveBig {
+        0% {
+          top: -50vw;
+        }
+        100% {
+          top: 20px;
+        }
+      }
+      transition: transform 1s ease;
+      // left button
+      .slick-prev {
+        z-index: -11;
+        left: 5px;
+        top: $mainwidth_big/2;
+        transform: translateY(-50%);
+      }
+      // right button
+      .slick-next {
+        z-index: -11;
+        right: 5px;
+        top: $mainwidth_big/2;
+        transform: translateY(-50%);
+      }
+      // main img
+      img {
+        width: $mainwidth_big;
+        height: $mainwidth_big;
+        object-fit: cover;
+        border: 1px solid white;
+        cursor: grab;
+        @include pad {
+          width: 90vw;
+          height: 90vw;
+        }
+      }
+    }
+  }
+}

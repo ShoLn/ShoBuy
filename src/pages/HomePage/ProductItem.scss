@@ -1,0 +1,148 @@
+@import '../../scss/export';
+$item_margin_lr: 25px;
+$normal_pic_width: 325px;
+$phone_pic_width: 35vw;
+
+.product_item {
+  margin: 20px 10px;
+  padding: 10px;
+  border: 1.5px solid rgba($color: #d0d0d0, $alpha: 1);
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgba($color: #d0d0d0, $alpha: 1);
+  img.trash_can {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: -10px;
+    right: -10px;
+    z-index: 11;
+    cursor: pointer;
+  }
+  // 商品售完圖片
+  div.sold_out {
+    position: absolute;
+    width: $normal_pic_width - (2 * $item_margin_lr);
+    height: $normal_pic_width - (2 * $item_margin_lr);
+    background-color: rgba($color: #464646, $alpha: 0.8);
+    z-index: 10;
+    @include pad {
+      width: $phone_pic_width;
+      height: $phone_pic_width;
+    }
+   
+    img.sold_out {
+      width: 40%;
+      height: 40%;
+      opacity: 0.8;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  // 商品首頁圖片
+  img.product_item_img {
+    width: $normal_pic_width - (2 * $item_margin_lr);
+    height: $normal_pic_width - (2 * $item_margin_lr);
+    object-fit: cover;
+    @include pad {
+      width: $phone_pic_width;
+      height: $phone_pic_width;
+    }
+    
+  }
+  //第二張圖片
+  img.product_item_img_2 {
+    position: absolute;
+    left: 0;
+    width: $normal_pic_width - (2 * $item_margin_lr);
+    height: $normal_pic_width - (2 * $item_margin_lr);
+    object-fit: cover;
+    @include pad {
+      width: $phone_pic_width;
+      height: $phone_pic_width;
+    }
+  }
+  //產品名稱
+  .title {
+    width: $normal_pic_width - (2 * $item_margin_lr);
+    font-weight: bolder;
+    font-size: 1.1em;
+    color: rgba($color: #2c2c2c, $alpha: 1);
+    text-shadow: 2px 2px 2px rgba($color: #817f7f, $alpha: 0.5);
+    word-break: break-all;
+    &:hover {
+      opacity: 0.6;
+    }
+    @include pad {
+      width: $phone_pic_width;
+    }
+    @include phone {
+      font-size: 1em;
+    }
+  }
+
+  .sucForTool_sort1 {
+    width: $normal_pic_width - (2 * $item_margin_lr);
+    font-size: 0.9em;
+    color: rgba($color: #454545, $alpha: 1);
+    word-break: break-all;
+    @include pad {
+      width: $phone_pic_width;
+    }
+    @include phone {
+      font-size: 0.8em;
+    }
+  }
+  .price {
+    width: $normal_pic_width - (2 * $item_margin_lr);
+    font-size: 0.9em;
+    color: rgba($color: #454545, $alpha: 1);
+    margin-top: 10px;
+    word-break: break-all;
+    @include pad {
+      width: $phone_pic_width;
+    }
+    @include phone {
+      font-size: 0.8em;
+    }
+  }
+  // 確認刪除商品 跳出視窗
+  .delete_popout {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($color: #c4c3c3, $alpha: 0.9);
+    display: flex;
+    justify-content: center;
+    z-index: 12;
+    div {
+      margin-top: 150px;
+      width: 300px;
+      height: 130px;
+      background-color: #ffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      border: 2px solid black;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      button {
+        width: 30%;
+        height: 30px;
+        border-radius: 5px;
+        font-size: 1rem;
+        border: none;
+        background-color: black;
+        color: #ffff;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,133 @@
+@import '../../scss/export';
+
+.Login {
+  max-width: $width1;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .account-login {
+    font-weight: 900;
+    font-size: 2rem;
+    margin: 60px 0;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    @include phone {
+      width: 90%;
+    }
+    input {
+      margin-bottom: 25px;
+      height: 40px;
+      width: 100%;
+      padding: 0 20px;
+      border: 1px solid black;
+      &:focus {
+        outline: none;
+        border: 1.5px solid rgb(147, 146, 146);
+        background-color: rgba($color: #d4f3e9, $alpha: 0.3);
+      }
+    }
+    .wrong::placeholder {
+      color: red;
+      opacity: 0.8;
+    }
+    button {
+      height: 40px;
+      border: 1px solid black;
+      background-color: #ffff;
+      font-size: 1.3rem;
+      font-weight: bolder;
+      cursor: pointer;
+      &:hover {
+        background-color: black;
+        color: #ffff;
+      }
+    }
+  }
+  .create-account {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    color: black;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  // reset password
+  .forget-password {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: black;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+  .fp-container {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: rgba($color: #a3a1a1, $alpha: 0.5);
+    .fp-form {
+      max-width: 350px;
+      margin: 120px auto;
+      background-color: #ffff;
+      border: 2px solid black;
+      border-radius: 5px;
+      padding: 45px 20px;
+      font-size: 0.8rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      img {
+        width: 12px;
+        height: 12px;
+        position: absolute;
+        top: 8px;
+        right: 12px;
+        &:hover {
+          opacity: 0.5;
+          cursor: pointer;
+        }
+      }
+      label {
+        position: relative;
+        width: 100%;
+        height: 40px;
+        z-index: 1;
+        margin: 20px 0;
+        img {
+          width: 20px;
+          height: 20px;
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 2;
+        }
+        input {
+          width: 100%;
+          height: 100%;
+          border-radius: 5px;
+          border: none;
+          border-bottom: 1px solid black;
+        }
+      }
+      button {
+        width: 100%;
+        height: 40px;
+      }
+      .email-send-result {
+        margin-top: 10px;
+      }
+    }
+  }
+}

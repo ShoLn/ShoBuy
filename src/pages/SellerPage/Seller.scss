@@ -1,0 +1,257 @@
+@import '../../scss/export';
+
+.seller {
+  max-width: 800px;
+  margin: 60px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  position: relative;
+  @include pad {
+    align-items: center;
+  }
+  .product {
+    display: flex;
+    margin-bottom: 25px;
+    @include pad {
+      flex-direction: column;
+      align-items: center;
+    }
+    // 上傳照片及照片預覽區塊
+    .product_img {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      flex: none;
+      margin-right: 50px;
+      @include pad {
+        margin-right: 0px;
+      }
+      // 上傳及主頁顯示圖片
+      .main {
+        width: 360px;
+        height: 360px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        @include phone {
+          width: 300px;
+          height: 300px;
+        }
+        &:hover img.prev {
+          opacity: 0.6;
+        }
+
+        div.first {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          border: 3px dashed rgba($color: #858585, $alpha: 1);
+          border-radius: 5px;
+          width: 350px;
+          height: 350px;
+          @include phone {
+            width: 290px;
+            height: 290px;
+          }
+          img.first {
+            width: 350px;
+            height: 350px;
+            object-fit: cover;
+            @include phone {
+              width: 290px;
+              height: 290px;
+            }
+          }
+          img.delete {
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: translate(50%, -50%);
+            width: 33px;
+            height: 33px;
+            opacity: 0.9;
+            cursor: pointer;
+            z-index: 6;
+            &:hover {
+              opacity: 1;
+            }
+          }
+          img.prev {
+            width: 80px;
+            height: 80px;
+          }
+        }
+        div.no_border {
+          border: none;
+        }
+        input {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          cursor: pointer;
+          z-index: 5;
+        }
+      }
+      // 其他次要圖片顯示區域
+      .secondary {
+        width: 360px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin-top: 15px;
+        @include phone {
+          width: 300px;
+        }
+        div.second {
+          position: relative;
+          img.second {
+            width: 80px;
+            height: 80px;
+            background-color: bisque;
+            margin: 0 5px 10px 5px;
+            object-fit: cover;
+            cursor: pointer;
+          }
+          img.delete {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 0;
+            right: 0;
+            transform: translate(30%, -40%);
+            opacity: 0.9;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    // 輸入商品名稱分類數量描述
+    .information {
+      display: flex;
+      flex-direction: column;
+      flex: auto;
+      padding-right: 5px;
+      @include pad {
+        width: 100%;
+      }
+      input {
+        width: 100%;
+        height: 40px;
+        margin: 0 0 25px 0;
+        font-size: 1.1rem;
+        padding: 0 7px;
+        &:focus {
+          outline: none;
+          border: 1.5px solid rgb(147, 146, 146);
+          background-color: rgba($color: #d4f3e9, $alpha: 0.3);
+        }
+      }
+      input::-webkit-inner-spin-button,
+      input::-webkit-outer-spin-button {
+        appearance: none;
+      }
+      // 多肉或雨林 // 子分類1
+      .select_div {
+        position: relative;
+        select {
+          width: 100%;
+          height: 40px;
+          margin: 0 0 25px 0;
+          font-size: 1.1rem;
+          padding: 0 7px;
+          appearance: none;
+          border-radius: 2px;
+          cursor: pointer;
+          &:focus {
+            outline: none;
+          }
+        }
+        img {
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          border-radius: 0 2px 2px 0;
+          top: 10px;
+          right: 5px;
+          pointer-events: none;
+        }
+      }
+      // 商品描述
+      .description {
+        display: flex;
+        align-items: flex-start;
+        padding: 5px 10px;
+        &:focus {
+          outline: none;
+          border: 1.5px solid rgb(147, 146, 146);
+          background-color: rgba($color: #d4f3e9, $alpha: 0.3);
+        }
+      }
+      // 商品數量部分
+      .number {
+        display: flex;
+        align-items: center;
+        width: 250px;
+        margin-bottom: 55px;
+        margin-top: 20px;
+        div {
+          font-size: 1.2rem;
+          font-weight: 700;
+        }
+        .left {
+          border-radius: 5px 0 0 5px;
+        }
+        .right {
+          border-radius: 0 5px 5px 0;
+        }
+        span {
+          flex: none;
+          width: 40px;
+          height: 40px;
+          text-align: center;
+          background-color: rgba($color: #1f1f1f, $alpha: 1);
+          color: #ffff;
+          cursor: pointer;
+          font-size: 1.5rem;
+          &:hover {
+            opacity: 0.6;
+          }
+        }
+        input {
+          border-radius: 0;
+          text-align: center;
+          width: 60px;
+          border: none;
+          border-top: 1px solid black;
+          border-bottom: 1px solid black;
+          margin: 0;
+        }
+        input::-webkit-inner-spin-button,
+        input::-webkit-outer-spin-button {
+          appearance: none;
+        }
+      }
+    }
+  }
+  button {
+    height: 60px;
+    border: 1px solid black;
+    background-color: black;
+    color: #ffff;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    cursor: pointer;
+    @include pad {
+      width: 90vw;
+    }
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}

@@ -1,0 +1,154 @@
+@import '../../scss/export';
+
+.order {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  background-color: rgba($color: #edecec, $alpha: 1);
+  border: 1.5px solid black;
+  border-left: none;
+  border-radius: 0 5px 5px 0;
+  @include pad {
+    flex: none;
+    width: 95%;
+  }
+  // 上方選單
+  .delever_type {
+    display: flex;
+    height: 50px;
+    border-bottom: 1px solid rgba($color: #a9a8a8, $alpha: 1);
+    margin-bottom: 20px;
+    .click_type {
+      border-left: 1px solid rgba($color: #6e6c6c, $alpha: 1);
+      box-shadow: 1px 1px 1px rgba($color: #6e6c6c, $alpha: 1);
+      background-color: black;
+      color: #ffff;
+    }
+    div {
+      width: 33.333%;
+      font-weight: bolder;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid black;
+      cursor: pointer;
+    }
+  }
+  // 下方訂單資料
+  .all_orders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 550px;
+    overflow: scroll;
+    .order_item {
+      display: flex;
+      flex-direction: column;
+      background-color: #ffffff;
+      width: 90%;
+      border-radius: 5px;
+      margin: 20px 0;
+      padding: 5px;
+      // 訂單編號
+      .oid {
+        font-weight: bolder;
+        display: flex;
+        justify-content: space-between;
+        margin: 10px;
+      }
+      // 收件者資訊
+      .deliver_info {
+        margin-left: 10px;
+        .deliver {
+          display: flex;
+          align-items: center;
+          font-weight: bolder;
+          img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+          }
+        }
+        .info {
+          font-size: 0.9em;
+          color: rgba($color: #686868, $alpha: 1);
+          margin-left: 43px;
+        }
+      }
+      hr {
+        margin: 5px;
+        border: none;
+        background-color: rgba($color: #a1a1a1, $alpha: 1);
+        height: 1.2px;
+      }
+      // 商品資訊
+      .products {
+        display: flex;
+        flex-direction: column;
+        font-size: 0.9em;
+        .product {
+          margin-left: 5px;
+          margin-bottom: 10px;
+          margin-top: 5px;
+          display: flex;
+          position: relative;
+          // 商品照片
+          img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+          }
+          // 名稱類別尺寸
+          .product_info {
+            margin: 0 20px;
+            .pro_name {
+              left: -10px;
+            }
+            .sort1,
+            .size {
+              color: rgba($color: #484747, $alpha: 1);
+            }
+          }
+          // 數量價格
+          .number {
+            position: absolute;
+            right: 10px;
+            color: rgba($color: #484747, $alpha: 1);
+          }
+        }
+        // 總金額
+        .total {
+          display: flex;
+          justify-content: space-between;
+          font-size: 1.1em;
+          font-weight: bolder;
+          margin: 10px 0;
+          .t1 {
+            left: 7px;
+          }
+          .t2 {
+            right: 7px;
+          }
+        }
+        // 按鈕
+        .move_to_next {
+          height: 40px;
+          border: 1px solid black;
+          background-color: #ffff;
+          font-size: 1.2em;
+          color: black;
+          margin: 5px 0;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          &:hover {
+            background-color: black;
+            color: #ffff;
+          }
+        }
+      }
+    }
+  }
+}

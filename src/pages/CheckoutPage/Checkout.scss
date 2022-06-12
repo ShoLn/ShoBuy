@@ -1,0 +1,204 @@
+@import '../../scss/export';
+$img_width: 150px;
+
+.checkout {
+  max-width: 1200px;
+  margin: 60px auto;
+  display: flex;
+  justify-content: space-between;
+  @include pad {
+    flex-direction: column;
+    align-items: center;
+  }
+  // 左半部
+  .product_container {
+    width: 47%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba($color: #fbfbfb, $alpha: 1);
+    box-shadow: 2px 2px 2px rgb(165, 165, 165);
+    @include pad {
+      width: 95%;
+      margin-bottom: 20px;
+    }
+    .product_top {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba($color: #e0e0e0, $alpha: 1);
+      font-size: 1.5em;
+      font-weight: bolder;
+      margin-bottom: 20px;
+      height: 40px;
+      width: 100%;
+    }
+    .product_item {
+      display: flex;
+      position: relative;
+      flex-wrap: wrap;
+      .buy_number {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        z-index: 5;
+        background-color: rgba($color: #6b6969, $alpha: 1);
+        width: 30px;
+        height: 30px;
+        border-radius: 30px;
+        color: white;
+        left: $img_width - 20px;
+        top: -15px;
+        font-weight: bolder;
+      }
+      .product_img {
+        width: $img_width;
+        height: $img_width;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-right: 20px;
+      }
+      .info {
+        .title {
+          font-weight: bolder;
+          font-size: 1.2em;
+          left: -10px;
+          margin-bottom: 5px;
+        }
+        .sucForTool {
+          margin-bottom: 5px;
+          color: rgba($color: #4e4e4e, $alpha: 1);
+        }
+        .size {
+          margin-bottom: 5px;
+          color: rgba($color: #4e4e4e, $alpha: 1);
+        }
+        .price {
+          font-weight: bolder;
+          font-size: 1.2em;
+          color: rgba($color: #0a4639, $alpha: 1);
+          margin-top: 5px;
+        }
+      }
+    }
+    hr.row {
+      width: 350px;
+      height: 5px;
+      background-color: rgba($color: #929292, $alpha: 1);
+      border: none;
+      margin-bottom: 25px;
+      @include pad {
+        width: 100%;
+      }
+    }
+    .total {
+      display: flex;
+      align-items: center;
+      font-size: 1.5em;
+      font-weight: bolder;
+      margin-bottom: 10px;
+      span.nt {
+        margin-left: 60px;
+        margin-right: 10px;
+        font-size: 0.8em;
+        font-weight: 400;
+        color: rgba($color: #4e4e4e, $alpha: 1);
+      }
+      span.number {
+        font-size: 1.3em;
+        color: rgba($color: #667874, $alpha: 1);
+      }
+    }
+  }
+
+  // 右半部
+  .send_info {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba($color: #fbfbfb, $alpha: 1);
+    box-shadow: 2px 2px 2px rgb(165, 165, 165);
+    width: 47%;
+    @include pad {
+      width: 95%;
+    }
+    .send_title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba($color: #e0e0e0, $alpha: 1);
+      font-size: 1.5em;
+      font-weight: bolder;
+      margin-bottom: 30px;
+      height: 40px;
+    }
+    input {
+      width: 300px;
+      height: 40px;
+      padding: 10px;
+      margin: 5px 0;
+      font-size: 1.1em;
+      font-weight: normal;
+      @include phone {
+        width: 90%;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+    span.notification {
+      color: rgba($color: #6f6f6f, $alpha: 1);
+      font-weight: normal;
+      font-size: 1em;
+    }
+    .name,
+    .phone {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 40px;
+      margin-left: 28.2px;
+      font-weight: 600;
+      font-size: 1.1em;
+    }
+    .store {
+      display: flex;
+      flex-direction: column;
+      margin-left: 28.2px;
+      margin-bottom: 40px;
+      font-weight: 500;
+      font-size: 1.1em;
+      .store_way {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        img.seven_logo {
+          width: 30px;
+          height: 30px;
+          margin-left: 10px;
+        }
+      }
+      label {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 7px 0;
+      width: 90%;
+      border: 1px solid black;
+      background-color: #ffff;
+      color: black;
+      font-size: 1.5rem;
+      font-weight: bolder;
+      cursor: pointer;
+      margin: 50px auto;
+      &:hover {
+        background-color: black;
+        color: #ffff;
+      }
+    }
+  }
+}

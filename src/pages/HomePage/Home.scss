@@ -1,0 +1,68 @@
+@import '../../scss/export';
+
+.home {
+  display: flex;
+  flex-direction: column;
+  max-width: $width1;
+  margin: auto;
+  // 搜尋不到商品
+  .none {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    font-size: 2em;
+    left: 10px;
+    font-weight: bolder;
+    @include phone {
+      font-size: 1em;
+    }
+  }
+  .have {
+    display: flex;
+    flex-direction: column;
+    max-width: $width1;
+    margin: auto;
+    // 商品排序邏輯
+    .select_container {
+      max-width: $width1;
+      display: flex;
+      justify-content: flex-end;
+      select {
+        height: 40px;
+        width: 200px;
+        margin-top: 20px;
+        right: 10px;
+        font-size: 1.1em;
+        text-align: center;
+        color: rgba($color: #383838, $alpha: 1);
+        border: 1.5px solid black;
+        @include pad {
+          margin-top: 5px;
+        }
+        @include phone {
+          height: 30px;
+          width: 150px;
+          font-size: 0.8em;
+        }
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    // 各別商品呈現容器
+    .products_container {
+      max-width: $width1;
+      margin: 10px auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      @include rwd1000 {
+        justify-content: space-evenly;
+      }
+      @include phone {
+        justify-content: space-between;
+      }
+    }
+  }
+}

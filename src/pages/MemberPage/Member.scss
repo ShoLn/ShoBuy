@@ -1,0 +1,114 @@
+@import '../../scss/export';
+
+div.member {
+  display: flex;
+  max-width: 1335px;
+  margin: 30px auto;
+  @include pad {
+    flex-direction: column;
+    align-items: center;
+  }
+  // 左半部會員資料
+  .member_info {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    background-color: rgba($color: #f1f1f1, $alpha: 1);
+    padding: 20px 0;
+    border: 1.5px solid black;
+    border-radius: 5px 0 0 5px;
+    @include pad {
+      width: 95%;
+      margin-bottom: 20px;
+    }
+    .pen {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+    // 大頭貼
+    .thumb-nail {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      &:hover {
+        opacity: 0.5;
+      }
+      .previmg {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        clip-path: circle();
+        object-fit: cover;
+      }
+      .cloud_icon {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        bottom: 0;
+        right: 20px;
+      }
+      input.file-upload {
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+      }
+    }
+    .drag-over {
+      opacity: 0.5;
+    }
+
+    // 文字資料
+    .email {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      margin: 10px;
+      span {
+        font-size: 1rem;
+        color: rgb(91, 90, 90);
+      }
+      input {
+        width: 300px;
+        height: 35px;
+        padding: 0px 10px;
+        border: 2.5px solid rgba($color: #678258, $alpha: 0.7);
+        &:focus {
+          outline: none;
+          border: 1px solid rgba($color: #898989, $alpha: 1);
+        }
+        &:read-only {
+          border: 1px solid black;
+        }
+      }
+    }
+    button {
+      height: 40px;
+      border: 1px solid black;
+      background-color: black;
+      font-size: 1.2rem;
+      color: #ffff;
+      margin-top: 5px;
+      width: 300px;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
+  // 右半部訂單
+}

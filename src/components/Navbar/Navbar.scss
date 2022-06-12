@@ -1,0 +1,242 @@
+@import '../../scss/export';
+
+.Navbar {
+  border-bottom: 1.5px solid black;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background-color: rgba($color: #ffffff, $alpha: 1);
+  .nav-container {
+    display: flex;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    max-width: $width1;
+    margin: 0 auto;
+    // 漢堡
+    .hamber {
+      width: 25px;
+      height: 25px;
+      position: relative;
+      display: none;
+      @include pad {
+        display: block;
+      }
+    }
+    // 左半部LOGO
+    .left {
+      position: absolute;
+      z-index: 10;
+      left: 10px;
+      .logo {
+        letter-spacing: 0px;
+        padding: 5px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 140px;
+        height: 50px;
+        background-color: black;
+        color: #ffff;
+        cursor: pointer;
+        font-size: 2em;
+        font-weight: 900;
+        font-style: italic;
+        @include pad {
+          width: 100px;
+          font-size: 1.3em;
+        }
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
+    // 下拉選單container
+    .nav {
+      display: flex;
+      justify-content: center;
+      height: 100%;
+      @include pad {
+        border: 1px solid black;
+        overflow: scroll;
+        position: fixed;
+        left: -100vw;
+        top: 60px;
+        height: calc(100vh - 60px);
+        width: 100vw;
+        flex-direction: column;
+        justify-content: flex-start;
+        background-color: rgba($color: #ffffff, $alpha: 1);
+        border-top: 1px solid black;
+      }
+    }
+    @keyframes ham_animation {
+      0% {
+        transform: translateX(-100vw);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+    .open_ham {
+      animation: ham_animation 1s ease;
+      left: 0;
+    }
+    // 右半部
+    div.right {
+      position: absolute;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      right: 10px;
+      height: 100%;
+      // 搜尋商品
+      .search {
+        position: relative;
+        display: flex;
+        align-items: center;
+        // 展開input
+        @keyframes search_input {
+          0% {
+            width: 0;
+          }
+          100% {
+            width: 200px;
+          }
+        }
+        @keyframes search_input_pad {
+          0% {
+            width: 0;
+          }
+          100% {
+            width: 100%;
+          }
+        }
+        input.mag {
+          padding: 0 10px;
+          height: 60px;
+          border: none;
+          width: 0px;
+          font-size: 1rem;
+          z-index: 11;
+          display: none;
+          &:focus {
+            outline: none;
+          }
+          @include pad {
+            position: fixed;
+            right: 0px;
+            top: 0px;
+          }
+        }
+        input.open_search {
+          display: block;
+          animation: search_input 0.5s ease;
+          width: 200px;
+          border-bottom: 1px solid black;
+          @include pad {
+            width: 100%;
+            animation: search_input_pad 0.5s ease;
+          }
+        }
+        // 放大鏡icon
+        .magnifier {
+          width: 25px;
+          height: 25px;
+          margin-left: 20px;
+          cursor: pointer;
+          &:hover {
+            opacity: 0.5;
+          }
+          &:focus ~ .mag {
+            border: none;
+          }
+          @include phone {
+            margin-left: 15px;
+          }
+        }
+      }
+      // 會員功能
+      a {
+        display: flex;
+        align-items: center;
+        height: 60px;
+        .member {
+          width: 23px;
+          height: 23px;
+          margin-left: 20px;
+          cursor: pointer;
+          &:hover {
+            opacity: 0.5;
+          }
+          @include phone {
+            margin-left: 15px;
+          }
+        }
+      }
+      // 新增商品功能
+      a {
+        display: flex;
+        align-items: center;
+        height: 60px;
+        .add_product {
+          width: 30px;
+          height: 30px;
+          margin-left: 20px;
+          cursor: pointer;
+          &:hover {
+            opacity: 0.5;
+          }
+          @include phone {
+            margin-left: 15px;
+          }
+        }
+      }
+      // 購物車功能
+      .cart_icon_container {
+        position: relative;
+        .cart_icon {
+          width: 30px;
+          height: 30px;
+          margin-top: 5px;
+          margin-left: 20px;
+          cursor: pointer;
+          &:hover {
+            opacity: 0.5;
+          }
+          @include phone {
+            margin-left: 15px;
+          }
+        }
+        .cart_number {
+          position: absolute;
+          width: 23px;
+          height: 23px;
+          border-radius: 23px;
+          background-color: rgba($color: #a23c3c, $alpha: 1);
+          color: #ffffff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          top: -8px;
+          right: -10px;
+        }
+      }
+
+      .logout {
+        border: 1.5px solid black;
+        padding: 2px;
+        border-radius: 5px;
+        margin-left: 20px;
+        &:hover {
+          background-color: black;
+          color: #ffff;
+          cursor: pointer;
+        }
+        @include phone {
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+}
