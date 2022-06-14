@@ -24,12 +24,13 @@ $phone_pic_width: 35vw;
     width: $normal_pic_width - (2 * $item_margin_lr);
     height: $normal_pic_width - (2 * $item_margin_lr);
     background-color: rgba($color: #464646, $alpha: 0.8);
+    left: 0;
     z-index: 10;
     @include pad {
       width: $phone_pic_width;
       height: $phone_pic_width;
     }
-   
+
     img.sold_out {
       width: 40%;
       height: 40%;
@@ -49,7 +50,6 @@ $phone_pic_width: 35vw;
       width: $phone_pic_width;
       height: $phone_pic_width;
     }
-    
   }
   //第二張圖片
   img.product_item_img_2 {

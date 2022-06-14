@@ -48,6 +48,7 @@ export default function ProductItem({ product }) {
       )}
       <Link to={`/Product/${product.productId}`} className='to_product'>
         {soldOut && (
+          // 完售圖片
           <div className='sold_out'>
             <img src={sold_out} className='sold_out' />
           </div>
