@@ -54,9 +54,11 @@
 - Upload product image and information
 - Delete product
 - Manage all user's orders
-  <img src="./readme_resorce/seller.gif"/>
+  <img src="./readme_resorce/seller1.gif"/>
+  <img src="./readme_resorce/seller2.gif"/>
 
 ## RWD 
 - Dropdown menu to hamberber icon
 - Searchbar animation
-  <img src="./readme_resorce/rwd.gif"/>
+
+  <img width='300' height='500' src="./readme_resorce/rwd.gif"/>
