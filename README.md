@@ -34,6 +34,7 @@
 | Git               | Version control                                                              |
 | webpack           | Module bundler                                                               |
 | Babel             | Compiler                                                                     |
+| Prettier          | Manage coding style                                                          |
 
 
 ## Demo
@@ -79,5 +80,7 @@
 ## RWD 
 - Dropdown menu to hamberber icon
 - Searchbar animation
+- Enable finger swipe on product image slider
 
-  <img width='300' height='500' src="./readme_resorce/rwd.gif"/>
+  <img width='200' height='400' src="./readme_resorce/rwd.gif"/>
+  <img width='200' height='400' src="./readme_resorce/rwd2.gif"/>
