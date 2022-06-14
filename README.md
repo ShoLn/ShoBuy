@@ -20,7 +20,7 @@
 ## Components Tree
 <img src="./readme_resorce/components_tree.png"/>
 
-## Tech table
+## Tech Table
 | Skill             | Description                                                                  |
 | :---------------  | :--------------------------------------------------------------------------- |
 | React Hook        | useState useEffect useContext useReducer                                     |
