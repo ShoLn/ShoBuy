@@ -160,7 +160,7 @@ export default function Order() {
                       <div className='product_info'>
                         <div className='pro_name'>【{product.title}】</div>
                         <div className='sort1'>{product.sort1}</div>
-                        <div className='size'>{product.size}</div>
+                        <div className='size'>{product.size}吋</div>
                       </div>
                       <div className='number'>
                         <div className='buy_number'>{`x ${product.buyNumber}`}</div>
@@ -233,7 +233,7 @@ export default function Order() {
                       <div className='product_info'>
                         <div className='pro_name'>【{product.title}】</div>
                         <div className='sort1'>{product.sort1}</div>
-                        <div className='size'>{product.size}</div>
+                        <div className='size'>{product.size}吋</div>
                       </div>
                       <div className='number'>
                         <div className='buy_number'>{`x ${product.buyNumber}`}</div>
@@ -302,7 +302,7 @@ export default function Order() {
                       <div className='product_info'>
                         <div className='pro_name'>【{product.title}】</div>
                         <div className='sort1'>{product.sort1}</div>
-                        <div className='size'>{product.size}</div>
+                        <div className='size'>{product.size}吋</div>
                       </div>
                       <div className='number'>
                         <div className='buy_number'>{`x ${product.buyNumber}`}</div>
