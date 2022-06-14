@@ -89,7 +89,7 @@ export default function Checkout() {
               <div className='sucForTool'>
                 {product.sucForTool}｜{product.sort1}
               </div>
-              <div className='size'>尺寸：{product.size}</div>
+              <div className='size'>尺寸：{product.size}吋</div>
               {/* 價格 */}
               <div className='price'>
                 NT${' '}
