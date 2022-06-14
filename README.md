@@ -5,10 +5,13 @@
     <img src="./readme_resorce/logo.png"/>
   </a>
   <h4>Plant E-commerce official website</h4>
-  <h4>Front end & Back end system</h4>
+  <h4>Front-end & Back-end system</h4>
 </div>
 
 ---
+## Components Tree
+<img src="./readme_resorce/components_tree.png"/>
+
 ## Tech table
 | Skill             | Description                                                                  |
 | :---------------  | :--------------------------------------------------------------------------- |
