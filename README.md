@@ -9,6 +9,21 @@
 </div>
 
 ---
+## Tech table
+| Skill             | Description                                                                  |
+| :---------------  | :--------------------------------------------------------------------------- |
+| React Hook        | useState useEffect useContext useReducer                                     |
+| React Router      | SPA routing                                                                  |
+| React Context     | Manage authentication global state on each component                         |
+| SCSS              | Designing web pages, use mixin manage rwd                                    |
+| Firebase          | Authentication: Authentication manage                                        |
+|                   | Firestore: manage products members orders documents, realtime update data    |
+|                   | Storage: Store all images                                                    |
+|                   | Hosting: Deploy website                                                      |
+| Git               | Version control                                                              |
+| webpack           | Module bundler                                                               |
+| Babel             | Compiler                                                                     |
+
 
 ## Demo
 
