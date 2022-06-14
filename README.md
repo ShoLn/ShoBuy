@@ -25,3 +25,4 @@
 - Sending reset password e-mail
 - Update thumbnail and user's profile
 - Showing user's orders 
+
