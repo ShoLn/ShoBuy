@@ -9,6 +9,14 @@
 </div>
 
 ---
+
+#### Website URL : https://shobuy-bc47c.web.app
+
+#### Test account
+
+- Email: test666@gmail.com
+- Password: test666
+---
 ## Components Tree
 <img src="./readme_resorce/components_tree.png"/>
 
@@ -29,13 +37,6 @@
 
 
 ## Demo
-
-#### Website URL : https://shobuy-bc47c.web.app
-
-#### Test account
-
-- Email: test666@gmail.com
-- Password: test666
 
 ## Front-end User
 
