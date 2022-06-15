@@ -154,9 +154,15 @@ export default function Navbar({ openSearch, setOpenSearch }) {
             />
           </div>
           {/* 會員頁面 */}
-          <Link to='/Login'>
-            <img src={member} className='member' title='會員頁面' />
-          </Link>
+          {user ? (
+            <Link to='/Member'>
+              <img src={member} className='member' title='會員頁面' />
+            </Link>
+          ) : (
+            <Link to='/Login'>
+              <img src={member} className='member' title='登入會員' />
+            </Link>
+          )}
           {/* 新增商品 */}
           {isManager && (
             <Link to='/Seller'>
