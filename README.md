@@ -5,7 +5,7 @@
     <img src="./readme_resorce/logo.png"/>
   </a>
   <h4>Plant E-commerce official website</h4>
-  <h4>Front-end & Back-end system</h4>
+  <h4>Client user & Operation system manager</h4>
 </div>
 
 ---
@@ -31,7 +31,6 @@
 |                   | Firestore: manage products members orders documents, realtime update data    |
 |                   | Storage: Store all images                                                    |
 |                   | Hosting: Deploy website                                                      |
-| Git               | Version control                                                              |
 | webpack           | Module bundler                                                               |
 | Babel             | Compiler                                                                     |
 | Prettier          | Manage coding style                                                          |
@@ -39,7 +38,7 @@
 
 ## Demo
 
-## Front-end User
+## Client user
 
 #### HomePage
 
@@ -67,7 +66,7 @@
   <img src="./readme_resorce/product_cart.gif"/>
   <img src="./readme_resorce/order.gif"/>
 
-## Back-end Manager
+## Operation system manager
 
 ### UploadPage and delete product function
 

@@ -159,8 +159,8 @@ export default function Navbar({ openSearch, setOpenSearch }) {
               <img src={member} className='member' title='會員頁面' />
             </Link>
           ) : (
-            <Link to='/login'>
-              <img src={member} className='member' title='會員頁面' />
+            <Link to='/Login'>
+              <img src={member} className='member' title='登入會員' />
             </Link>
           )}
           {/* 新增商品 */}
