@@ -14,8 +14,13 @@
 
 #### Test account
 
+- User
 - Email: test666@gmail.com
 - Password: test666
+
+- Manager
+- Email: managershobuy@gmail.com
+- Password: zxcasdqwe1234
 ---
 ## Components Tree
 <img src="./readme_resorce/components_tree.png"/>
