@@ -14,13 +14,13 @@ import trash_can from '../../icon/trash_can.png'
 import Popout from '../../components/Popout'
 
 export default function Seller() {
-  const [title, setTitle] = useState('')
-  const [sucForTool, setSucForTool] = useState('default')
-  const [sort1, setSort1] = useState('default')
-  const [size, setSize] = useState('default')
-  const [price, setPrice] = useState('')
-  const [productNumber, setProductNumber] = useState(0)
-  const [description, setDiscription] = useState('')
+  const [title, setTitle] = useState('測試名稱')
+  const [sucForTool, setSucForTool] = useState('多肉植物')
+  const [sort1, setSort1] = useState('12之卷')
+  const [size, setSize] = useState('5吋')
+  const [price, setPrice] = useState('1200')
+  const [productNumber, setProductNumber] = useState(3)
+  const [description, setDiscription] = useState('描述')
   const [imgFiles, setImgFiles] = useState('')
   const [isPending, setIsPending] = useState(false)
   const [finishedUpload, setFinishedUpload] = useState(false)

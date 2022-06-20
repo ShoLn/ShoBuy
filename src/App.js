@@ -59,7 +59,7 @@ export default function App() {
                 element={!isManager ? <Navigate to='/' /> : <Seller />}
               />
               <Route path='/Product/:productId' element={<Product />} />
-              <Route path='/Checkout' element={<Checkout />} />
+              <Route path='/Checkout' element={!user ? <Navigate to='/' /> : <Checkout />} />
             </Routes>
           </ScrollToTop>
           <Footer />
